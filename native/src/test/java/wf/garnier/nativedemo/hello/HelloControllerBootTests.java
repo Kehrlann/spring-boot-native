@@ -1,4 +1,4 @@
-package wf.garnier.nativedemo;
+package wf.garnier.nativedemo.hello;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class HelloControllerTest {
+class HelloControllerBootTests {
 
 	@Autowired
 	MockMvc mockMvc;
