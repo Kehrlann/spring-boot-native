@@ -24,6 +24,11 @@ dependencies {
 
 tasks.compileJava {
 	options.compilerArgs.add("-parameters")
+	dependsOn(tasks.formatMain)
+}
+
+tasks.compileTestJava {
+	dependsOn(tasks.formatTest)
 }
 
 tasks.withType<Test> {
