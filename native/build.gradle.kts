@@ -24,11 +24,6 @@ dependencies {
 
 tasks.compileJava {
 	options.compilerArgs.add("-parameters")
-	dependsOn(tasks.formatMain)
-}
-
-tasks.compileTestJava {
-	dependsOn(tasks.formatTest)
 }
 
 tasks.withType<Test> {
@@ -39,4 +34,18 @@ graalvmNative {
 	binaries.all {
 		buildArgs.add("-Ob")
 	}
+}
+
+tasks.format {
+	// Make sure we only format the Main and Test source sets, not the AOT-generated sources.
+	dependsOn.clear()
+	dependsOn(tasks.formatMain)
+	dependsOn(tasks.formatTest)
+}
+
+tasks.checkFormat {
+	// Make sure we only checkFormat the Main and Test source sets, not the AOT-generated sources.
+	dependsOn.clear()
+	dependsOn(tasks.checkFormatMain)
+	dependsOn(tasks.checkFormatTest)
 }
