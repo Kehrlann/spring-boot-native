@@ -16,7 +16,7 @@ class HelloConfiguration {
 	@Bean
 	@ConditionalOnProperty(value = "greeting.lang", havingValue = "fr", matchIfMissing = false)
 	public GreetingService frenchGreetingService() {
-		return new GreetingService("Bonjour %s");
+		return new GreetingService("Bonjour %s!");
 	}
 
 }

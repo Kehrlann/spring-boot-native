@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class GreetingService {
 
-	@Value("${greeting.punctuation}")
-	private String punctuation;
-
 	private final String template;
 
 	public GreetingService() {
-		this("Hello %s");
+		this("Hello %s!");
 	}
 
 	public GreetingService(String template) {
@@ -18,7 +15,7 @@ public class GreetingService {
 	}
 
 	public String greet(String name) {
-		return template.formatted(name) + punctuation;
+		return template.formatted(name);
 	}
 
 }
