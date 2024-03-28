@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="'Book: ' + ${book.title()}"></title>
+</head>
+<body>
+
+<h1 th:text="${book.title()}"></h1>
+<h2>Synopsis</h2>
+<p th:text="${book.synopsis()}"></p>
+
+<h2>Additional information</h2>
+<ul>
+    <li th:each="entry: ${book.additionalInfo()}" data-role="additional-information">
+        <span th:text="${entry.getKey()} + ': '" style="font-weight: bold;"></span>
+        <span th:text="${entry.getValue()}"></span>
+    </li>
+</ul>
+</body>
+</html>
