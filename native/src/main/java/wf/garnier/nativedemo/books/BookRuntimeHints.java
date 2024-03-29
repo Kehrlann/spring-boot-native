@@ -31,11 +31,15 @@ class BookRuntimeHints implements RuntimeHintsRegistrar {
 			.registerType(Map.Entry.class, MemberCategory.INTROSPECT_DECLARED_METHODS,
 					MemberCategory.INVOKE_DECLARED_METHODS);
 
-		// Required for xpath, through StringBufferPool
+		// Required for xpath in tests, through StringBufferPool
+		// TODO: put in a test-focused runtime hints class
 		hints.reflection()
 			.registerType(TypeReference.of("com.sun.org.apache.xml.internal.utils.FastStringBuffer"),
 					MemberCategory.INVOKE_DECLARED_CONSTRUCTORS);
-
+		// Note that if this is missing you get a separate error, pointing to a missing
+		// resource bundle, fixed
+		// by adding the line below:
+		// hints.resources().registerResourceBundle("com.sun.org.apache.xml.internal.res.XMLErrorResources");
 	}
 
 }
