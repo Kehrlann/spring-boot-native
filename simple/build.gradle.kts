@@ -23,7 +23,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
+    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers")
 }
 
 tasks.compileJava {
