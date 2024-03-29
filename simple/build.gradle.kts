@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     java
     id("org.springframework.boot") version "3.2.4"
@@ -50,4 +52,10 @@ tasks.checkFormat {
     dependsOn.clear()
     dependsOn(tasks.checkFormatMain)
     dependsOn(tasks.checkFormatTest)
+}
+
+tasks.test {
+    testLogging {
+        events = setOf(TestLogEvent.STARTED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+    }
 }
