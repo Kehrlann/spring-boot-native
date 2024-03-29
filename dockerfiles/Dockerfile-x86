@@ -1,0 +1,5 @@
+FROM --platform=linux/x86_64 ubuntu
+
+COPY "../simple/build/native/nativeCompile/simple" "."
+
+CMD "./simple"
