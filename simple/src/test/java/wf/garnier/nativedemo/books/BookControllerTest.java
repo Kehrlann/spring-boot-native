@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
@@ -16,6 +17,16 @@ class BookControllerTest {
 
 	@Autowired
 	MockMvc mockMvc;
+
+	@Test
+	void bookApi() throws Exception {
+		mockMvc.perform(get("/api/book/the-hobbit"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(jsonPath("$.title").value("The Hobbit, or There and Back Again"))
+			.andExpect(jsonPath("$.additionalInformation.Author").value("J R R Tolkien"))
+			.andExpect(jsonPath("$.additionalInformation.Genre").value("Fantasy"))
+			.andExpect(jsonPath("$.additionalInformation[\"Publication date\"]").value("21 September 1937"));
+	}
 
 	@Test
 	void theHobbit() throws Exception {

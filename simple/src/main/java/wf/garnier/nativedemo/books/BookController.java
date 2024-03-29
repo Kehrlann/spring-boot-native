@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class BookController {
@@ -18,7 +19,19 @@ public class BookController {
 		return "book";
 	}
 
+	@GetMapping("/api/book/{title}")
+	@ResponseBody
+	public BookApiResponse bookApi(@PathVariable String title) {
+		return new BookApiResponse(books.get(title));
+	}
+
 	public record Book(String title, String synopsis, Map<String, String> additionalInfo) {
+	}
+
+	public record BookApiResponse(String title, String synopsis, Map<String, String> additionalInformation) {
+		public BookApiResponse(Book book) {
+			this(book.title(), book.synopsis(), book.additionalInfo());
+		}
 	}
 
 	private final Map<String, Book> books = Map.of("the-hobbit", new Book("The Hobbit, or There and Back Again", """
