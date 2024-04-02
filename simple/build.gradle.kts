@@ -40,10 +40,16 @@ tasks.withType<Test> {
 }
 
 graalvmNative {
-    binaries.all {
+    binaries.named("test") {
         buildArgs.add("-Ob")
     }
+    if (System.getenv("NATIVE_DEBUG") != null) {
+        graalvmNative.binaries.named("main") {
+            buildArgs.add("-Ob")
+        }
+    }
 }
+
 
 tasks.format {
     // Make sure we only format the Main and Test source sets, not the AOT-generated sources.
