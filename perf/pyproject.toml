@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "spring_boot_native_perf"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 requests = "^2.31.0"
 locust = "^2.24.1"
 beautifulsoup4 = "^4.12.3"
