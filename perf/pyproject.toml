@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "spring-boot-native-perf"
+version = "1.0.0"
+description = ""
+authors = ["Daniel Garnier-Moiroux <git@garnier.wf>"]
+readme = "README.md"
+packages = [{include = "spring_boot_native_perf"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+locust = "^2.24.1"
+beautifulsoup4 = "^4.12.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
