@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BookController {
 
+	@GetMapping("/book-simple/{title}")
+	public String bookSimple(@PathVariable String title, Model model) {
+		model.addAttribute("book", books.get(title));
+		return "book-simple";
+	}
+
 	@GetMapping("/book/{title}")
 	public String book(@PathVariable String title, Model model) {
 		model.addAttribute("book", books.get(title));

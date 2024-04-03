@@ -6,6 +6,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -17,6 +18,17 @@ class BookControllerTest {
 
 	@Autowired
 	MockMvc mockMvc;
+
+	@Test
+	void bookSimple() throws Exception {
+		var response = mockMvc.perform(get("/book-simple/the-hobbit"))
+				.andExpect(status().is2xxSuccessful())
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+
+		assertThat(response).contains("<h1>The Hobbit, or There and Back Again</h1>");
+	}
 
 	@Test
 	void bookApi() throws Exception {
