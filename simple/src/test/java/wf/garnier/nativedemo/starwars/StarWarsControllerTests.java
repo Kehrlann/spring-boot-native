@@ -49,6 +49,11 @@ class StarWarsControllerTests {
 			.andExpect(jsonPath("$.characters[0].movieCount").value(6));
 	}
 
+	@Test
+	void remoteDescription() throws Exception {
+		mockMvc.perform(get("/starwars/remote")).andExpect(status().is2xxSuccessful());
+	}
+
 	@TestConfiguration
 	static class SwapiContainerConfiguration {
 

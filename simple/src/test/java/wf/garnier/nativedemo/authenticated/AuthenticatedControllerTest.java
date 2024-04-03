@@ -57,8 +57,8 @@ public class AuthenticatedControllerTest {
 	@WithMockUser(username = "daniel")
 	void aTeamNonAdmin() throws Exception {
 		mockMvc.perform(get("/authenticated/a-team"))
-				.andExpect(status().is2xxSuccessful())
-				.andExpect(content().string("You are part of the A team!"));
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(content().string("You are part of the A team!"));
 	}
 
 }

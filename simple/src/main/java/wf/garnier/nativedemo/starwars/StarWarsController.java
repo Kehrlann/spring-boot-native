@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.springframework.core.ParameterizedTypeReference;
@@ -19,6 +21,8 @@ public class StarWarsController {
 	private int swapiPort = 8000;
 
 	private RestClient restClient = RestClient.create("http://localhost:%s/".formatted(swapiPort));
+
+	private ObjectMapper objectMapper = new ObjectMapper();
 
 	public void setSwapiPort(Integer swapiPort) {
 		this.swapiPort = swapiPort;
@@ -41,6 +45,12 @@ public class StarWarsController {
 				.thenComparing(StarWarsCharacter::name))
 			.toList();
 		return new StarWarsCharactersResponse(characters);
+	}
+
+	@GetMapping("/remote")
+	public String remote() throws JsonProcessingException {
+		return objectMapper
+			.writeValueAsString(new RemoteServerDescription("http://localhost:%s/".formatted(swapiPort)));
 	}
 
 	public record StarWarsCharactersResponse(List<StarWarsCharacter> characters) {
@@ -68,6 +78,13 @@ public class StarWarsController {
 	//@formatter:on
 
 	public record SwapiResponse<T>(List<T> results) {
+	}
+
+	public record RemoteServerDescription(String host, String name, String emoji) {
+
+		public RemoteServerDescription(String host) {
+			this(host, "swapi", "🌕⭐️🪐👾🧑‍🚀");
+		}
 	}
 
 }

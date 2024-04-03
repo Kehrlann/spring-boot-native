@@ -22,10 +22,10 @@ class BookControllerTest {
 	@Test
 	void bookSimple() throws Exception {
 		var response = mockMvc.perform(get("/book-simple/the-hobbit"))
-				.andExpect(status().is2xxSuccessful())
-				.andReturn()
-				.getResponse()
-				.getContentAsString();
+			.andExpect(status().is2xxSuccessful())
+			.andReturn()
+			.getResponse()
+			.getContentAsString();
 
 		assertThat(response).contains("<h1>The Hobbit, or There and Back Again</h1>");
 	}
