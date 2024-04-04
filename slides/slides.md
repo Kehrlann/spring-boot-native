@@ -229,7 +229,7 @@ Points d'attention:
 - Libs non compatibles
 - Chaînes de caractères
 
-Chez Spring: `@ImportRuntimeHints`
+Chez Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 
 ---
 
