@@ -228,6 +228,7 @@ Points d'attention:
 - Sérialisation
 - Libs non compatibles
 - Chaînes de caractères
+- Class path scanning
 
 Chez Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 
