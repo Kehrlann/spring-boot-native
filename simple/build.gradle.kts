@@ -70,3 +70,8 @@ tasks.test {
         events = setOf(TestLogEvent.STARTED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
     }
 }
+
+tasks.bootBuildImage {
+    imageName = "native:buildpack"
+    publish = false
+}
