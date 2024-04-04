@@ -2,6 +2,14 @@
 
 Native apps with Spring Boot
 
+
+## TODO
+
+- A word on buildpacks
+- Tracing agent demo (apache POI)
+- Rework the demo as a single domain
+- Local perf tests
+
 ## Table of contents
 
 - Closed-world assumptions, AOT, and conditionals
