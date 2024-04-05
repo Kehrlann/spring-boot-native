@@ -9,6 +9,7 @@ Native apps with Spring Boot
 - Tracing agent demo (apache POI)
 - Rework the demo as a single domain
 - Local perf tests
+- GraalVM EE
 
 ## Table of contents
 
