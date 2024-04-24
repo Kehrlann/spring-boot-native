@@ -8,8 +8,8 @@ Native apps with Spring Boot
 - A word on buildpacks
 - Tracing agent demo (apache POI)
 - Rework the demo as a single domain
-- Local perf tests
 - GraalVM EE
+- Local perf tests ✅
 
 ## Table of contents
 
