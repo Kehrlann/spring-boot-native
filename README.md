@@ -5,7 +5,7 @@ Native apps with Spring Boot
 
 ## TODO
 
-- A word on buildpacks
+- A word on buildpacks ✅
 - Tracing agent demo (apache POI)
 - Rework the demo as a single domain
 - GraalVM EE

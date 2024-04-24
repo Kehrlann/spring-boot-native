@@ -74,4 +74,17 @@ tasks.test {
 tasks.bootBuildImage {
     imageName = "native:buildpack"
     publish = false
+
+    // Beta: build native images on ARM arch
+    // Lightweight builder, avoid pulling all buildpacks
+    builder.set("paketobuildpacks/builder-jammy-buildpackless-tiny")
+
+    // A single buildpack, for java+native, that supports arm64
+    buildpacks.add("gcr.io/paketo-buildpacks/java-native-image:beta")
+
+    // Not required because we pull the single builder java-native-image
+    // which defaults to building native images.
+    // When using default buidpacks (e.g. on x86), or when dual-arch is GA,
+    // this flag will be required.
+    environment.put("BP_NATIVE_IMAGE", "true")
 }
