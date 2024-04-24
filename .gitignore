@@ -1,3 +1,7 @@
+## this project ##
+artifacts/
+
+## Spring & build stuff ##
 HELP.md
 .gradle
 build/
