@@ -13,15 +13,48 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BookController {
 
-	@GetMapping("/book-simple/{title}")
-	public String bookSimple(@PathVariable String title, Model model) {
-		model.addAttribute("book", books.get(title));
-		return "book-simple";
+	// TODO:
+	// - @Profile beans
+	// - @Conditional beans
+	// - @Value for title
+	// - Reflection:
+	// 		- Jackson direct serialization
+	// 		- Jackson mapping in the RestClient
+	// - security
+
+	// Ideas:
+	// - page with list of books
+	// 		- runtime hints for books
+	// 		- remove /book-simple/
+	// - Books API
+	//		- add some logging with objectmapper (?)
+	//		- use an ObjectMapper builder
+	// - @Profile
+	//		- BookRepository FR/EN with `@Profile("french")`
+	// - @ConditionalOn...
+	//		- ... pull some Spring AI?
+	//		- ...
+	//		- mention that the same goes for boot-auto-configuration
+	// - @Value
+	//		- title
+
+	// TODO: null-safety
+
+	private final BookRepository bookRepo;
+
+    public BookController(BookRepository bookRepo) {
+        this.bookRepo = bookRepo;
+    }
+
+    @GetMapping("/book")
+	public String book(Model model) {
+		model.addAttribute("books", bookRepo.findAll());
+		return "book-list";
 	}
 
-	@GetMapping("/book/{title}")
-	public String book(@PathVariable String title, Model model) {
-		model.addAttribute("book", books.get(title));
+	@GetMapping("/book/{slug}")
+	public String book(@PathVariable String slug, Model model) {
+		model.addAttribute("book", bookRepo.findBookBySlug(slug));
 		return "book";
 	}
 
@@ -64,8 +97,8 @@ public class BookController {
 			""", new HashMap<>() {
 		{
 			put("Author", "N. K. Jemisin");
-			put("Series", "The Broken Earth trilogy");
 			put("Genre", "Science fantasy");
+			put("Series", "The Broken Earth trilogy");
 			put("Publisher", "Orbit");
 			put("Publication date", "August 4, 2015");
 		}

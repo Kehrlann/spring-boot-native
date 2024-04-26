@@ -30,8 +30,9 @@ class EnglishBookRepository implements BookRepository {
 						to reclaim the dwarves' home and treasure from the dragon Smaug. Bilbo's journey takes him
 						from his peaceful rural surroundings into more sinister territory.
 						""",
-						LocalDate.of(1937, Month.SEPTEMBER, 21)
-				)
+						LocalDate.of(1937, Month.SEPTEMBER, 21),
+						"the-hobbit"
+						)
 		);
 		books.put(
 				"the-fifth-season",
@@ -44,7 +45,14 @@ class EnglishBookRepository implements BookRepository {
 						Every few centuries, its inhabitants endure what they call a "Fifth Season" of catastrophic
 						climate change.
 						""",
-						LocalDate.of(2015, Month.AUGUST, 4)
+						LocalDate.of(2015, Month.AUGUST, 4),
+						"the-fifth-season",
+						new HashMap<>() {
+							{
+								put("Series", "The Broken Earth trilogy");
+								put("Publisher", "Orbit");
+							}
+						}
 				)
 		);
 		//@formatter:on
