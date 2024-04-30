@@ -71,6 +71,19 @@ tasks.test {
     }
 }
 
+tasks.register("composeUp", type = Exec::class) {
+    commandLine("docker", "compose", "up", "-d", "--wait")
+}
+
+tasks.register("composeDown", type = Exec::class) {
+    commandLine("docker", "compose", "down")
+}
+
+tasks.nativeTest {
+    dependsOn("composeUp").mustRunAfter("nativeTestCompile")
+    finalizedBy("composeDown")
+}
+
 tasks.bootBuildImage {
     imageName = "native:buildpack"
     publish = false

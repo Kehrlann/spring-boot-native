@@ -17,6 +17,14 @@ class BookRuntimeHints implements RuntimeHintsRegistrar {
 		hints.reflection().registerType(EmojiTitleEnhancer.class, MemberCategory.INVOKE_PUBLIC_METHODS);
 		hints.reflection().registerType(SeriousTitleEnhancer.class, MemberCategory.INVOKE_PUBLIC_METHODS);
 
+		hints.reflection().registerType(HugoAwardsService.AwardWinningBook.class, MemberCategory.INVOKE_PUBLIC_METHODS);
+		hints.reflection().registerType(HugoAwardsService.Configuration.class, MemberCategory.values());
+
+		var entry = TypeReference.of("wf.garnier.nativedemo.books.HugoAwardsService$ApiResponse$Entry");
+		var response = TypeReference.of("wf.garnier.nativedemo.books.HugoAwardsService$ApiResponse");
+		hints.reflection().registerType(entry, MemberCategory.values());
+		hints.reflection().registerType(response, MemberCategory.values());
+
 		// book.html: we iterate over entries in the map(s) and use .getKey and .getValue
 		hints.reflection()
 			.registerType(TypeReference.of("java.util.HashMap$Node"), MemberCategory.INVOKE_DECLARED_METHODS);
