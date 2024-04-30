@@ -51,6 +51,7 @@ class BookControllerTest {
 				.andReturn()
 				.getResponse()
 				.getContentAsString();
+			assertThat(body).contains("<h1>My Book Collection</h1>");
 			assertThat(body).contains("The Hobbit, or There and Back Again");
 			assertThat(body).contains("The Fifth Season");
 		}
@@ -82,7 +83,7 @@ class BookControllerTest {
 	@Nested
 	@SpringBootTest
 	@AutoConfigureMockMvc
-	@TestPropertySource(properties = "books.lang=fr") // <----
+	@TestPropertySource(properties = {"books.lang=fr", "book.title=Ma Collection de Livres"}) // <----
 	@ActiveProfiles("fun") // <----
 	class FrenchAndFun {
 
@@ -96,6 +97,7 @@ class BookControllerTest {
 				.andReturn()
 				.getResponse()
 				.getContentAsString();
+			assertThat(body).contains("<h1>Ma Collection de Livres</h1>");
 			assertThat(body).contains("Ravage");
 			assertThat(body).contains("La Planète des Singes");
 		}

@@ -24,8 +24,6 @@ public class BookController {
 	// - Books API
 	// - add some logging with objectmapper (?)
 	// - use an ObjectMapper builder
-	// - @Value
-	// - title
 	// - @Conditional: same goes for Boot-auto configuration
 
 	// TODO: null-safety
