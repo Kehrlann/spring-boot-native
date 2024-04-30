@@ -5,10 +5,11 @@ package wf.garnier.nativedemo.books;
  */
 public interface TitleEnhancer {
 
-    /**
-     * Take the original title, and make it better.
-     * @param originalTitle -
-     * @return a better title!
-     */
-    public String enhance(String originalTitle);
+	/**
+	 * Take the original title, and make it better.
+	 * @param originalTitle -
+	 * @return a better title!
+	 */
+	public String enhance(String originalTitle);
+
 }

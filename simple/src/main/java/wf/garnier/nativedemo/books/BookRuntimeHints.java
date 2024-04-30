@@ -12,9 +12,10 @@ class BookRuntimeHints implements RuntimeHintsRegistrar {
 	@Override
 	public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
 		// Required for book.html template
-		hints.reflection()
-			.registerType(BookController.Book.class, MemberCategory.PUBLIC_FIELDS,
-					MemberCategory.INVOKE_PUBLIC_METHODS);
+		hints.reflection().registerType(Book.class, MemberCategory.PUBLIC_FIELDS, MemberCategory.INVOKE_PUBLIC_METHODS);
+		hints.reflection().registerType(TitleEnhancer.class, MemberCategory.INVOKE_PUBLIC_METHODS);
+		hints.reflection().registerType(EmojiTitleEnhancer.class, MemberCategory.INVOKE_PUBLIC_METHODS);
+		hints.reflection().registerType(SeriousTitleEnhancer.class, MemberCategory.INVOKE_PUBLIC_METHODS);
 
 		// book.html: we iterate over entries in the map(s) and use .getKey and .getValue
 		hints.reflection()

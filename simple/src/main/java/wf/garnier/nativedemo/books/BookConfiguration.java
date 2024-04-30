@@ -10,28 +10,28 @@ import org.springframework.context.annotation.Profile;
 @ImportRuntimeHints(BookRuntimeHints.class)
 class BookConfiguration {
 
-    @Bean
-    @ConditionalOnProperty(value = "books.lang", havingValue = "en", matchIfMissing = true)
-    BookRepository defaultBookRepository() {
-        return new EnglishBookRepository();
-    }
+	@Bean
+	@ConditionalOnProperty(value = "books.lang", havingValue = "en", matchIfMissing = true)
+	BookRepository defaultBookRepository() {
+		return new EnglishBookRepository();
+	}
 
+	@Bean
+	@ConditionalOnProperty(value = "books.lang", havingValue = "fr")
+	BookRepository frenchBookRepository() {
+		return new FrenchBookRepository();
+	}
 
-    @Bean
-    @ConditionalOnProperty(value = "books.lang", havingValue = "fr")
-    BookRepository frenchBookRepository() {
-        return new FrenchBookRepository();
-    }
+	@Bean(name = "titleEnhancer")
+	@Profile("!fun")
+	TitleEnhancer defaultTitleEnhancer() {
+		return new SeriousTitleEnhancer();
+	}
 
-    @Bean(name = "titleEnhancer")
-    @Profile("!fun")
-    TitleEnhancer defaultTitleEnhancer() {
-        return new SeriousTitleEnhancer();
-    }
+	@Bean(name = "titleEnhancer")
+	@Profile("fun")
+	TitleEnhancer emojiTitleEnhancer() {
+		return new EmojiTitleEnhancer();
+	}
 
-    @Bean(name = "titleEnhancer")
-    @Profile("fun")
-    TitleEnhancer emojiTitleEnhancer() {
-        return new EmojiTitleEnhancer();
-    }
 }

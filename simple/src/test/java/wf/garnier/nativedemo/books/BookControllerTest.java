@@ -1,7 +1,5 @@
 package wf.garnier.nativedemo.books;
 
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
@@ -49,36 +46,44 @@ class BookControllerTest {
 
 		@Test
 		void bookList() throws Exception {
-			mockMvc.perform(get("/book"))
+			var body = mockMvc.perform(get("/book"))
 				.andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(Matchers.containsString("The Hobbit, or There and Back Again")))
-				.andExpect(content().string(Matchers.containsString("The Fifth Season")));
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+			assertThat(body).contains("The Hobbit, or There and Back Again");
+			assertThat(body).contains("The Fifth Season");
 		}
 
 		@Test
 		void titleEnhancement() throws Exception {
-			mockMvc.perform(get("/book/the-hobbit"))
+			var body = mockMvc.perform(get("/book/the-hobbit"))
 				.andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(Matchers.containsString("<h1>&quot;The Hobbit, or There and Back Again&quot;</h1>")));
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+			assertThat(body).contains("<h1>&quot;The Hobbit, or There and Back Again&quot;</h1>");
 		}
 
 		@Test
 		void bookApi() throws Exception {
-			mockMvc.perform(get("/api/book/the-hobbit"))
-					.andExpect(status().is2xxSuccessful())
-					.andExpect(jsonPath("$.title").value("The Hobbit, or There and Back Again"))
-					.andExpect(jsonPath("$.additionalInformation.Author").value("J R R Tolkien"))
-					.andExpect(jsonPath("$.additionalInformation.Genre").value("Fantasy"))
-					.andExpect(jsonPath("$.additionalInformation[\"Publication date\"]").value("21 September 1937"));
+			mockMvc.perform(get("/api/book/the-fifth-season"))
+				.andExpect(status().is2xxSuccessful())
+				.andExpect(jsonPath("$.title").value("The Fifth Season"))
+				.andExpect(jsonPath("$.author").value("N. K. Jemisin"))
+				.andExpect(jsonPath("$.genre").value("Science fantasy"))
+				.andExpect(jsonPath("$.publicationDate").value("2015-08-04"))
+				.andExpect(jsonPath("$.additionalInformation.Series").value("The Broken Earth trilogy"))
+				.andExpect(jsonPath("$.additionalInformation.Publisher").value("Orbit"));
 		}
 
 	}
 
+	@Nested
 	@SpringBootTest
 	@AutoConfigureMockMvc
-	@TestPropertySource(properties = "books.lang=fr")
-	@ActiveProfiles("fun")
-	@Nested
+	@TestPropertySource(properties = "books.lang=fr") // <----
+	@ActiveProfiles("fun") // <----
 	class FrenchAndFun {
 
 		@Autowired
@@ -86,18 +91,23 @@ class BookControllerTest {
 
 		@Test
 		void bookList() throws Exception {
-			mockMvc.perform(get("/book"))
+			var body = mockMvc.perform(get("/book"))
 				.andExpect(status().is2xxSuccessful())
-				.andExpect(content().string(Matchers.containsString("Ravage")))
-				.andExpect(content().string(Matchers.containsString("La Planète des Singes")));
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+			assertThat(body).contains("Ravage");
+			assertThat(body).contains("La Planète des Singes");
 		}
-
 
 		@Test
 		void titleEnhancement() throws Exception {
-			mockMvc.perform(get("/book/la-planete-des-singes"))
-					.andExpect(status().is2xxSuccessful())
-					.andExpect(content().string(Matchers.containsString("<h1>🐵 La Planète des Singes</h1>")));
+			var body = mockMvc.perform(get("/book/la-planete-des-singes"))
+				.andExpect(status().is2xxSuccessful())
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+			assertThat(body).contains("<h1>🐵 La Planète des Singes</h1>");
 		}
 
 	}

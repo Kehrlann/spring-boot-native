@@ -19,8 +19,8 @@ class FrenchBookRepository implements BookRepository {
 						"René Barjavel",
 						"Roman d'anticipation",
 						"""
-						Dans une société mature, un jour l'électricité disparaît et plus aucune machine ne peut fonctionner. 
-						Les habitants, anéantis par la soudaineté de la catastrophe, sombrent dans le chaos, 
+						Dans une société mature, un jour l'électricité disparaît et plus aucune machine ne peut fonctionner.
+						Les habitants, anéantis par la soudaineté de la catastrophe, sombrent dans le chaos,
 						privés d'eau courante, de lumière et de moyens de déplacement...
 						""",
 						LocalDate.of(1943, Month.FEBRUARY, 27),
