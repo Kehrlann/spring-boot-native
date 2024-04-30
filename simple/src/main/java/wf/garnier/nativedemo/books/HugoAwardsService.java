@@ -11,16 +11,20 @@ public class HugoAwardsService {
 
 	private final RestClient.Builder restClientBuilder;
 
-	private int port = 8000;
+	private String upstreamUrl;
 
 	public record AwardWinningBook(String title, String author, Integer year) {
+	}
+
+	public record Configuration(String baseUrl, String someEmoji) {
 	}
 
 	private RestClient restClient;
 
 	public HugoAwardsService(RestClient.Builder restClientBuilder) {
 		this.restClientBuilder = restClientBuilder;
-		restClient = this.restClientBuilder.baseUrl("http://localhost:" + port).build();
+		upstreamUrl = "http://localhost:8000";
+		restClient = this.restClientBuilder.baseUrl(upstreamUrl).build();
 	}
 
 	public Collection<AwardWinningBook> findAll() {
@@ -34,9 +38,13 @@ public class HugoAwardsService {
 			.toList();
 	}
 
+	public Configuration getConfiguration() {
+		return new Configuration(upstreamUrl, "🚀📚");
+	}
+
 	public void setUpstreamServicePort(int port) {
-		this.port = port;
-		this.restClient = restClientBuilder.baseUrl("http://localhost:" + port).build();
+		this.upstreamUrl = "http://localhost:" + port;
+		this.restClient = restClientBuilder.baseUrl(upstreamUrl).build();
 	}
 
 	private record ApiResponse(Integer count, List<Entry> results) {

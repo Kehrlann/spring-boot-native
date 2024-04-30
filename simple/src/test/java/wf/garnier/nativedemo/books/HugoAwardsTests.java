@@ -3,11 +3,13 @@ package wf.garnier.nativedemo.books;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledInNativeImage;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.web.servlet.MockMvc;
@@ -15,6 +17,7 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.images.builder.Transferable;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DisabledInNativeImage
 @DisabledInAotMode
+@ExtendWith(OutputCaptureExtension.class)
 class HugoAwardsTests {
 
 	@Autowired
@@ -48,6 +52,18 @@ class HugoAwardsTests {
 			.getContentAsString();
 		assertThat(body).contains("The Calculating Stars - Mary Robinette Kowal (2019)");
 		assertThat(body).contains("The Stone Sky - N. K. Jemisin (2018)");
+	}
+
+	@Test
+	void debug() throws Exception {
+		var body = mockMvc.perform(get("/hugo?debug=true"));
+		fail("finish test");
+	}
+
+	@Test
+	void noDebug() throws Exception {
+		var body = mockMvc.perform(get("/hugo"));
+		fail("finish test");
 	}
 
 	@TestConfiguration
