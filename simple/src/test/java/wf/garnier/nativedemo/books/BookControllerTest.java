@@ -83,7 +83,7 @@ class BookControllerTest {
 	@Nested
 	@SpringBootTest
 	@AutoConfigureMockMvc
-	@TestPropertySource(properties = {"books.lang=fr", "book.title=Ma Collection de Livres"}) // <----
+	@TestPropertySource(properties = { "books.lang=fr", "book.title=Ma Collection de Livres" }) // <----
 	@ActiveProfiles("fun") // <----
 	class FrenchAndFun {
 

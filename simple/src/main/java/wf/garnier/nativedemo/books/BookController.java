@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BookController {
 
 	// TODO:
-	// - @Value for title
 	// - Reflection:
 	// - Jackson direct serialization
 	// - Jackson mapping in the RestClient
@@ -32,9 +31,13 @@ public class BookController {
 
 	private final String pageTitle;
 
-	public BookController(BookRepository bookRepo, @Value("${book.title:My Book Collection}") String pageTitle) {
+	private final HugoAwardsService hugoAwardsService;
+
+	public BookController(BookRepository bookRepo, HugoAwardsService hugoAwardsService,
+			@Value("${book.title:My Book Collection}") String pageTitle) {
 		this.bookRepo = bookRepo;
 		this.pageTitle = pageTitle;
+		this.hugoAwardsService = hugoAwardsService;
 	}
 
 	@GetMapping("/book")
@@ -42,6 +45,12 @@ public class BookController {
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("books", bookRepo.findAll());
 		return "book-list";
+	}
+
+	@GetMapping("/hugo")
+	public String hugo(Model model) {
+		model.addAttribute("books", hugoAwardsService.findAll());
+		return "hugo";
 	}
 
 	@GetMapping("/book/{slug}")

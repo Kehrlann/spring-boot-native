@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hugo Awards</title>
+</head>
+<body>
+
+<h1>Hugo Awards</h1>
+<ul th:each="book: ${books}">
+    <li><span th:text="${book.title() + ' - ' + book.author() + ' (' + book.year() + ')'}"></span></li>
+</ul>
+
+</body>
+</html>
