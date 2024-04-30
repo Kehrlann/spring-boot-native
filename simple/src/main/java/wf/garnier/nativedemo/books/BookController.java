@@ -3,6 +3,7 @@ package wf.garnier.nativedemo.books;
 import java.time.LocalDate;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,28 +16,32 @@ public class BookController {
 	// TODO:
 	// - @Value for title
 	// - Reflection:
-	// 		- Jackson direct serialization
-	// 		- Jackson mapping in the RestClient
+	// - Jackson direct serialization
+	// - Jackson mapping in the RestClient
 	// - security
 
 	// Ideas:
 	// - Books API
-	//		- add some logging with objectmapper (?)
-	//		- use an ObjectMapper builder
+	// - add some logging with objectmapper (?)
+	// - use an ObjectMapper builder
 	// - @Value
-	//		- title
+	// - title
 	// - @Conditional: same goes for Boot-auto configuration
 
 	// TODO: null-safety
 
 	private final BookRepository bookRepo;
 
-	public BookController(BookRepository bookRepo) {
+	private final String pageTitle;
+
+	public BookController(BookRepository bookRepo, @Value("${book.title:My Book Collection}") String pageTitle) {
 		this.bookRepo = bookRepo;
+		this.pageTitle = pageTitle;
 	}
 
 	@GetMapping("/book")
 	public String book(Model model) {
+		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("books", bookRepo.findAll());
 		return "book-list";
 	}
