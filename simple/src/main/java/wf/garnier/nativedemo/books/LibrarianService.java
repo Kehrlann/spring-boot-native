@@ -1,12 +1,12 @@
-package wf.garnier.nativedemo.authenticated;
+package wf.garnier.nativedemo.books;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AclService {
+class LibrarianService {
 
-	public boolean isAllowed(Authentication authentication) {
+	public boolean isLibrarian(Authentication authentication) {
 		return authentication.getName().toLowerCase().contains("a");
 	}
 

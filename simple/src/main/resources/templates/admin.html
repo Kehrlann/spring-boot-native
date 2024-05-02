@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Books</title>
+</head>
+<body>
+<h1>Admin page</h1>
+<ul th:each="book: ${books}">
+    <li><a th:href="${'/book/' + book.slug()}" th:text="${book.title()}"></a> - <button>🗑️</button></li>
+</ul>
+</body>
+</html>

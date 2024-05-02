@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -71,6 +72,13 @@ public class BookController {
 	@ResponseBody
 	public BookApiResponse bookApi(@PathVariable String slug) {
 		return new BookApiResponse(bookRepo.findBookBySlug(slug));
+	}
+
+	@GetMapping("/admin")
+	@PreAuthorize("@librarianService.isLibrarian(authentication)")
+	public String admin(Model model) {
+		model.addAttribute("books", bookRepo.findAll());
+		return "admin";
 	}
 
 	public record BookApiResponse(String title, String author, String genre, String synopsis, LocalDate publicationDate,
