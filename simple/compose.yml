@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
 #  swapi:
 #    image: juriy/swapi:1.0.0

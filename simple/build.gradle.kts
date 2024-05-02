@@ -72,10 +72,16 @@ tasks.test {
 }
 
 tasks.register("composeUp", type = Exec::class) {
+    doFirst {
+        println("\n\n\t🐳🛫 Starting up docker compose...\n\n")
+    }
     commandLine("docker", "compose", "up", "-d", "--wait")
 }
 
 tasks.register("composeDown", type = Exec::class) {
+    doFirst {
+        println("\n\n\t\t🐳🛬 Shutting down docker compose...\n\n")
+    }
     commandLine("docker", "compose", "down")
 }
 
