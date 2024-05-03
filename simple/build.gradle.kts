@@ -24,6 +24,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-security")
 
+    implementation("org.apache.poi:poi-ooxml:4.1.2")
+
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -40,6 +42,9 @@ tasks.withType<Test> {
 }
 
 graalvmNative {
+    binaries.all {
+        buildArgs.add("-H:+AddAllCharsets") // required for Apache POI which uses the CP-1252 charset
+    }
     binaries.named("test") {
         buildArgs.add("-Ob")
     }

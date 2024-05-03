@@ -9,5 +9,6 @@
 <ul th:each="book: ${books}">
     <li><a th:href="${'/book/' + book.slug()}" th:text="${book.title()}"></a></li>
 </ul>
+<a href="book/export">Export</a>
 </body>
 </html>

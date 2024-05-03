@@ -1,5 +1,6 @@
 ## this project ##
 artifacts/
+tracing-agent/
 
 ## Spring & build stuff ##
 HELP.md

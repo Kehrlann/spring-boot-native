@@ -35,20 +35,29 @@ public class BookController {
 
 	private final ObjectMapper objectMapper;
 
+	private final ExportService exportService;
+
 	public BookController(BookRepository bookRepo, HugoAwardsService hugoAwardsService,
-			Jackson2ObjectMapperBuilder objectMapperBuilder,
-			@Value("${book.title:My Book Collection}") String pageTitle) {
+                          Jackson2ObjectMapperBuilder objectMapperBuilder,
+                          @Value("${book.title:My Book Collection}") String pageTitle, ExportService exportService) {
 		this.bookRepo = bookRepo;
 		this.hugoAwardsService = hugoAwardsService;
 		this.objectMapper = objectMapperBuilder.build();
 		this.pageTitle = pageTitle;
-	}
+        this.exportService = exportService;
+    }
 
 	@GetMapping("/book")
 	public String book(Model model) {
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("books", bookRepo.findAll());
 		return "book-list";
+	}
+
+	@GetMapping(value = "/book/export", produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	@ResponseBody
+	public byte[] exportBookList() {
+		return exportService.export(bookRepo.findAll());
 	}
 
 	@GetMapping("/hugo")
