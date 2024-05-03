@@ -55,7 +55,6 @@ graalvmNative {
     }
 }
 
-
 tasks.format {
     // Make sure we only format the Main and Test source sets, not the AOT-generated sources.
     dependsOn.clear()
@@ -95,20 +94,32 @@ tasks.nativeTest {
     finalizedBy("composeDown")
 }
 
-tasks.bootBuildImage {
-    imageName = "native:buildpack"
-    publish = false
+if (System.getenv("DOCKER_JVM") != null) {
+    tasks.bootBuildImage {
+        imageName = "jvm:buildpack"
+        publish = false
+        builder.set("paketobuildpacks/builder-jammy-base:latest")
+        buildpacks.add("gcr.io/paketo-buildpacks/java:latest")
+        environment.put("BP_NATIVE_IMAGE", "false")
+        environment.put("BPE_SERVER_ADDRESS", "0.0.0.0")
+    }
+} else {
+    tasks.bootBuildImage {
+        imageName = "native:buildpack"
+        publish = false
+        // Not required because we pull the single builder java-native-image
+        // which defaults to building native images.
+        // When using default buidpacks (e.g. on x86), or when dual-arch is GA,
+        // this flag will be required.
+        environment.put("BP_NATIVE_IMAGE", "true")
+        environment.put("BPE_SERVER_ADDRESS", "0.0.0.0")
+        environment.put("BP_NATIVE_IMAGE_BUILD_ARGUMENTS", "-H:+AddAllCharsets")
 
-    // Beta: build native images on ARM arch
-    // Lightweight builder, avoid pulling all buildpacks
-    builder.set("paketobuildpacks/builder-jammy-buildpackless-tiny")
+        // Beta: build native images on ARM arch
+        // Lightweight builder, avoid pulling all buildpacks
+        builder.set("paketobuildpacks/builder-jammy-buildpackless-tiny")
 
-    // A single buildpack, for java+native, that supports arm64
-    buildpacks.add("gcr.io/paketo-buildpacks/java-native-image:beta")
-
-    // Not required because we pull the single builder java-native-image
-    // which defaults to building native images.
-    // When using default buidpacks (e.g. on x86), or when dual-arch is GA,
-    // this flag will be required.
-    environment.put("BP_NATIVE_IMAGE", "true")
+        // A single buildpack, for java+native, that supports arm64
+        buildpacks.add("gcr.io/paketo-buildpacks/java-native-image:latest")
+    }
 }
