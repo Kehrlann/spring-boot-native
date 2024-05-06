@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4"
     id("io.spring.javaformat") version "0.0.41"
     id("org.graalvm.buildtools.native") version "0.10.1"
+    id("com.dorongold.task-tree") version "3.0.0"
 }
 
 group = "wf.garnier"

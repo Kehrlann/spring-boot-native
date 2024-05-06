@@ -4,6 +4,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4"
     id("io.spring.javaformat") version "0.0.41"
     id("org.graalvm.buildtools.native") version "0.10.1"
+    id("com.dorongold.task-tree") version "3.0.0"
     // Note: this must match the "book" project's build script.
     // See https://github.com/gradle/gradle/issues/17559
     // We could put it all under the root settings, but I want the "books"
