@@ -11,14 +11,14 @@ colorSchema: "light"
 hideInToc: true
 ---
 
-# Migrer des applis Spring vers Native
+# Migrating Spring Boot apps to Native
 
 <br>
 <br>
 
 ### Daniel Garnier-Moiroux
 
-Spring Dev Meetup, 2024-04-04
+Devoxx UK, 2024-05-09
 
 
 ---
@@ -39,38 +39,38 @@ Software Engineer
 - <logos-twitter /> @Kehrlann
 - <logos-firefox /> https://garnier.wf/
 - <logos-github-icon /> github.com/Kehrlann/
-- <fluent-emoji-flat-envelope-with-arrow /> daniel.garnier-moiroux@broadcom.com
+- <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
 
 
 ---
 
-# Migration vers Spring Native
+# Migrating Spring apps to Native
 
-1. 📚 Rappels "Native Images" en Java
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. 🤔️ Réflexion
-1. 🧑‍🔬 Tests
-1. 📄 Resources et fichiers
-1. 💻 Distribution: CPU et libc
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
-1. 🕵️ Librairies non supportées
 
 ---
 
-# Migration vers Spring Native
+# Migrating Spring apps to Native
 
-1. **📚 Rappels "Native Images" en Java**
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. 🤔️ Réflexion
-1. 🧑‍🔬 Tests
-1. 📄 Resources et fichiers
-1. 💻 Distribution: CPU et libc
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
-1. 🕵️ Librairies non supportées
 
 ---
 
-# Rappels "Native Image"
+# "Native Image" Refresher
 
 <br />
 
@@ -80,7 +80,7 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 
 ---
 
-# Rappels "Native Image"
+# "Native Image" refresher
 
 <br />
 
@@ -88,29 +88,34 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 
 ---
 
-# Rappels "Native Image"
+# "Native Image" refresher
 
 <br />
 
-- Utiliser la dernière version
-- Flag `-Ob` pour moins d'optimisation au build
+### _Pro Tips™_
+
+<br />
+
+- Use the latest and greatest (currently Java 22)
+- Use the `-Ob` flag for faster cycle time
+  - But not in prod ...
 
 ---
 
-# Migration vers Spring Native
+# Migrating Spring apps to Native
 
-1. 📚 Rappels "Native Images" en Java
-1. **🏺️ _"Closed-world" assumption:_ en "vase clos"**
-1. 🤔️ Réflexion
-1. 🧑‍🔬 Tests
-1. 📄 Resources et fichiers
-1. 💻 Distribution: CPU et libc
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
-1. 🕵️ Librairies non supportées
 
 ---
 
-# En "vase clos"
+# "Closed-world" assumption
 
 <br />
 
@@ -120,49 +125,47 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 
 ---
 
-# En "vase clos": profils et conditions
+# "Closed-world" impact on Spring
 
-Quelques limites
+&nbsp;
 
-🚨️ Attention aux annotations:
+🚨️ Annotations that select classes dynamically to be avoided
 
 - `@Profile`
 - `@ConditionalOn...`
 
-✅ Annotations sans problème:
+✅ Other annotations are fine
 
-- `@Value`
-- `@Configuration`
-- A peu près toutes les annotations Spring
+- Not related to classes - `@Value`
+- Not conditional - `@Configuration`, `@Controller`, ...
 
 ---
 
-# En "vase clos"
+# "Closed-world"
 
 <br />
 
-### 🧑‍💻 `@Profile` demo
+### 🧑‍💻 `@Profile` & `@Conditional` demo
 
 ---
 
-# En "vase clos": profils et conditions
+# "Closed-world" impact on Spring
 
-Quelques limites
+&nbsp;
 
-🚨️ Attention aux annotations:
+🚨️ Annotations that select classes dynamically to be avoided
 
 - `@Profile`
 - `@ConditionalOn...`
 
-✅ Annotations sans problème:
+✅ Other annotations are fine
 
-- `@Value`
-- `@Configuration`
-- A peu près toutes les annotations Spring
+- Not related to classes - `@Value`
+- Not conditional - `@Configuration`, `@Controller`, ...
 
 ---
 
-# En "vase clos": autres limites
+# "Closed-world": other limitations
 
 <br />
 
@@ -176,78 +179,98 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 
 ---
 
-# En "vase clos": Java Agents
+# "Closed-world": Java Agents
 
 <br />
 
-Supporté, mais surtout build-time: `-J-javaagent:agent.jar`
-
-Support experimental: https://www.graalvm.org/latest/reference-manual/native-image/metadata/ExperimentalAgentOptions/
+Supported when included at build time: `-J-javaagent:agent.jar`
 
 ---
 
-# Migration vers Spring Native
+# Migrating Spring apps to Native
 
-1. 📚 Rappels "Native Images" en Java
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. **🤔️ Réflexion**
-1. 🧑‍🔬 Tests
-1. 📄 Resources et fichiers
-1. 💻 Distribution: CPU et libc
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
-1. 🕵️ Librairies non supportées
 
 ---
 
-# Réflexion
+# Reflection
 
 <br />
 
-GraalVM supporte la réflexion, mais uniquement "pré-déclarée":
+Supported by GraalVM, but classes must be pre-registered:
 
 - AOT processing avec Spring
-- GraalVM Metadata repository
+- [GraalVM Metadata repository](https://www.graalvm.org/native-image/libraries-and-frameworks/)
 - `reflect-config.json`
 
 ---
 
-# Réflexion
+# Reflection
 
 <br />
 
-### 🧑‍💻 Demo réflexion
+### 🧑‍💻 Reflection demo
 
 ---
 
-# Réflexion
+# Reflection, beware of:
 
-<br />
+&nbsp;
 
-Points d'attention:
+- Code inside strings (`SpEL`, templates)
+- JSON (un)marshalling
+  - Spring covers `@Controller` and `@Repository`
+- Classpath scanning (`webjars-locator`)
+- Libs that are NOT compatible
 
-- Sérialisation
-- Libs non compatibles
-- Chaînes de caractères
-- Class path scanning
-
-Chez Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
+For Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 
 ---
 
-# Migration vers Spring Native
+# Migrating Spring apps to Native
 
-1. 📚 Rappels "Native Images" en Java
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. 🤔️ Réflexion
-1. **🧑‍🔬 Tests**
-1. 📄 Resources et fichiers
-1. 💻 Distribution: CPU et libc
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
-1. 🕵️ Librairies non supportées
 
 ---
 
-# Tests en natif
+# Other dynamic behavior
+
+- Resources (files, e.g. `i18n`, ...)
+  - Spring covers config files, DB schemas, templates, banner ...
+- Java serialization (`implements Serializable`)
+- JNI
+- Other limitations: [Spring Boot Wiki](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-with-GraalVM)
+
+---
+
+# Migrating Spring apps to Native
+
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
+1. 🏃 Performance
+
+---
+
+# Native Testing
 
 <br />
 
@@ -255,120 +278,134 @@ Chez Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 ./gradlew nativeTest
 ```
 
-Limitations:
+Biggest limitations:
+
 - Mockito
 - Testcontainers
-- ...
 
 ---
 
-# Tests en natif
+# Native testing
 
 <br />
 
-### 🧑‍💻 Démo tests
+### 🧑‍💻 Native testing
 
 ---
 
-# Migration vers Spring Native
+# Native Testing: recap
 
-1. 📚 Rappels "Native Images" en Java
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. 🤔️ Réflexion
-1. 🧑‍🔬 Tests
-1. **📄 Resources et fichiers**
-1. 💻 Distribution: CPU et libc
+&nbsp;
+
+Tests can speed your migrations:
+
+- Good coverage
+- Dedicated end-to-end tests
+
+Anti-goal:
+
+- Thourough behavior verification
+- Run on every build
+
+---
+layout: fact
+---
+
+# Please test responsibly
+
+# 👷️ 🥽 🦺️
+
+
+---
+
+# Migrating Spring apps to Native
+
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
-1. 🕵️ Librairies non supportées
 
 ---
 
-# Migration vers Spring Native
-
-1. 📚 Rappels "Native Images" en Java
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. 🤔️ Réflexion
-1. 🧑‍🔬 Tests
-1. 📄 Resources et fichiers
-1. **💻 Distribution: CPU et libc**
-1. 🏃 Performance
-1. 🕵️ Librairies non supportées
-
----
-
-# Distribution: architecture CPU
+# Packaging and distribution
 
 <br />
 
-Pas de cross-compilation. Compiler sur l'architecutre cible.
-
-Dépendances sur `libc`: différence entre `glibc` (e.g. Ubuntu) et `musl` (e.g. Alpine Linux)
-
-Buildpacks à la rescousse!
+- CPU architecture matters
+- By default, `libc` matters
+- No cross-compilation
+  - Compile on target architecture (think: Linux x86_84)
+- By default, dynamically linked against `libc`
+  - Can't compile on ubuntu and run on alpine
+- Use buildpacks!
 
 ---
 
-# Distribution: architecture CPU
+# Packaging and distribution
 
 <br />
 
-### 🧑‍💻 Démo distribution
+### 🧑‍💻 Distribution demo
 
 ---
 
-# Distribution: architecture CPU
+# Packaging and distribution recap
 
 <br />
 
 tl;dr:
 
-- Compiler sur l'architecture cible
+- Compile on target architecture (think: Linux x86_84)
 - Buildpacks!
 
 ---
 
-# Migration vers Spring Native
+# Migrating Spring apps to Native
 
-1. 📚 Rappels "Native Images" en Java
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. 🤔️ Réflexion
-1. 🧑‍🔬 Tests
-1. 📄 Resources et fichiers
-1. 💻 Distribution: CPU et libc
-1. **🏃 Performance**
-1. 🕵️ Librairies non supportées
-
----
-
-# Performance
-
-<br />
-
-### 🧑‍💻 Démo performance
-
----
-
-# Performance
-
-<br />
-
-- Démarrage rapide
-- Peak performance instantané
-- Moins gourmand en resources
-- Scaling inférieur à JVM
-
----
-
-# Migration vers Spring Native
-
-1. 📚 Rappels "Native Images" en Java
-1. 🏺️ _"Closed-world" assumption:_ en "vase clos"
-1. 🤔️ Réflexion
-1. 🧑‍🔬 Tests
-1. 📄 Resources et fichiers
-1. 💻 Distribution: CPU et libc
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
-1. **🕵️ Librairies non supportées**
+
+---
+
+# Performance
+
+<br />
+
+### 🧑‍💻 Performance demo
+
+---
+
+# Performance
+
+<br />
+
+- Starts _really_ fast
+- Instant peak performance
+- Less-resource hungry
+- JVM scales better over time*
+
+---
+
+# Migrating Spring apps to Native
+
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Limitation: Reflection
+1. ✋ Other dynamic behaviors
+1. 🧑‍🔬 Testing
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
+1. 🏃 Performance
 
 ---
 
@@ -378,7 +415,7 @@ Repo:
 Reach out:
 - <logos-mastodon-icon /> @Kehrlann@hachyderm.io
 - <logos-twitter /> @Kehrlann
-- <fluent-emoji-flat-envelope-with-arrow /> daniel.garnier-moiroux@broadcom.com
+- <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
 
 ---
 layout: image-right
@@ -391,5 +428,5 @@ image: /qr-code.png
 
 Feedback 👉👉
 
-Ça m'aide beaucoup! 🙇
+Feedback helps a lot! 🙇
 
