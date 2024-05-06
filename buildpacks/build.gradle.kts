@@ -33,20 +33,21 @@ tasks.withType<Test> {
 tasks.bootBuildImage {
     imageName = "demo:native"
     publish = false
-
-    // For the demo: make sure we're not building this image from the root project
-    enabled = false
 }
 
-// Disabled some tasks to avoid running them from the root project
-tasks.nativeCompile {
-    enabled = false
+// Disable time-consuming tasks. This is a demo, we don't want those tasks to run from the root project.
+project.afterEvaluate {
+    val excludedTasks = listOf(
+        tasks.bootRun,
+        tasks.nativeCompile,
+        tasks.nativeTest,
+        tasks.nativeTestCompile,
+        tasks.bootBuildImage
+    )
+    excludedTasks
+        .map { it.get() }
+        .forEach {
+            it.enabled = false
+        }
 }
 
-tasks.nativeTest {
-    enabled = false
-}
-
-tasks.processAot {
-    enabled = false
-}
