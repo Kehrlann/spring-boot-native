@@ -40,6 +40,7 @@ tasks.bootBuildImage {
 project.afterEvaluate {
     val excludedTasks = listOf(
         tasks.bootRun,
+        tasks.processAot,
         tasks.nativeCompile,
         tasks.nativeTest,
         tasks.nativeTestCompile,
