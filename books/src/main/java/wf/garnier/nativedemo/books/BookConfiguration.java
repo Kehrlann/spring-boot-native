@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@ImportRuntimeHints(BookRuntimeHints.class)
 class BookConfiguration {
 
 	@Bean

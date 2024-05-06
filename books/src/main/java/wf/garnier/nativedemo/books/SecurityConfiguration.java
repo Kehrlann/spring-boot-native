@@ -13,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableMethodSecurity
-@ImportRuntimeHints(SecurityRuntimeHints.class)
 public class SecurityConfiguration {
 
 	@Bean
