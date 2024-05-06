@@ -44,6 +44,12 @@ tasks.withType<Test> {
 graalvmNative {
     binaries.all {
         buildArgs.add("-H:+AddAllCharsets") // required for Apache POI which uses the CP-1252 charset
+
+        // GraalVM experimental options, see "Reachability Metadata > Strict Metadata Mode"
+        // https://www.graalvm.org/latest/reference-manual/native-image/metadata/#strict-metadata-mode
+        // buildArgs.add("-H:ThrowMissingRegistrationErrors=")
+        // buildArgs.add("-H:MissingRegistrationReportingMode=Warn")
+        // buildArgs.add("-H:+UnlockExperimentalVMOptions")
     }
     binaries.named("test") {
         buildArgs.add("-Ob")
