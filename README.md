@@ -92,3 +92,12 @@ Add `-Ob` for faster compilation
     - including the default value
     - including env var configuration
     - including embedded profiles file
+
+### Using the tracing agent
+
+```
+java -Dspring.aot.enabled=true \
+        -agentlib:native-image-agent=config-output-dir=books/src/main/resources/META-INF/native-image,access-filter-file=filter.json \
+        -jar \
+        books/build/libs/books-0.0.1-SNAPSHOT.jar
+```
