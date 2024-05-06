@@ -20,7 +20,7 @@ class SecurityTests {
 
 	@Test
 	void bookAnonymous() throws Exception {
-		mockMvc.perform(get("/book")).andExpect(status().is2xxSuccessful());
+		mockMvc.perform(get("/books")).andExpect(status().is2xxSuccessful());
 	}
 
 	@Test

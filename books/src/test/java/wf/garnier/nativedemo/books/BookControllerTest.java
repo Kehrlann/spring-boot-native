@@ -46,7 +46,7 @@ class BookControllerTest {
 
 		@Test
 		void bookList() throws Exception {
-			var body = mockMvc.perform(get("/book"))
+			var body = mockMvc.perform(get("/books"))
 				.andExpect(status().is2xxSuccessful())
 				.andReturn()
 				.getResponse()
@@ -92,7 +92,7 @@ class BookControllerTest {
 
 		@Test
 		void bookList() throws Exception {
-			var body = mockMvc.perform(get("/book"))
+			var body = mockMvc.perform(get("/books"))
 				.andExpect(status().is2xxSuccessful())
 				.andReturn()
 				.getResponse()

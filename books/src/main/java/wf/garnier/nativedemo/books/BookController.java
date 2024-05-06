@@ -47,14 +47,14 @@ public class BookController {
         this.exportService = exportService;
     }
 
-	@GetMapping("/book")
+	@GetMapping("/books")
 	public String book(Model model) {
 		model.addAttribute("pageTitle", pageTitle);
 		model.addAttribute("books", bookRepo.findAll());
 		return "book-list";
 	}
 
-	@GetMapping(value = "/book/export", produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	@GetMapping(value = "/books/export", produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 	@ResponseBody
 	public byte[] exportBookList() {
 		return exportService.export(bookRepo.findAll());
