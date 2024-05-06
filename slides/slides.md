@@ -32,9 +32,9 @@ class: smaller
 ### Garnier-Moiroux
 <br>
 
-Software Engineer
+Software Engineer @ Broadcom
 
-- <logos-spring-icon /> Broadcom+Tanzu+Spring
+- <logos-spring-icon /> Spring + Tanzu
 - <logos-mastodon-icon /> @Kehrlann@hachyderm.io
 - <logos-twitter /> @Kehrlann
 - <logos-firefox /> https://garnier.wf/
