@@ -16,13 +16,13 @@ set -u
 # GraalVM 22
 sdk use java 22-graal
 
-./gradlew bootJar
-cp simple/build/libs/simple-0.0.1-SNAPSHOT.jar artifacts
+./gradlew clean bootJar
+cp books/build/libs/books-0.0.1-SNAPSHOT.jar artifacts
 
 ./gradlew clean nativeCompile
-cp simple/build/native/nativeCompile/simple artifacts/native-graal-ee
+cp books/build/native/nativeCompile/books artifacts/native-graal-ee
 
 # GraalVM 22 Community edition
 sdk use java 22-graalce
 ./gradlew clean nativeCompile
-cp simple/build/native/nativeCompile/simple artifacts/native-graal-ce
+cp books/build/native/nativeCompile/books artifacts/native-graal-ce
