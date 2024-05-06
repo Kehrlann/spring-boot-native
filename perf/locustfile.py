@@ -6,7 +6,7 @@ from locust import HttpUser, User, tag, task
 class AuthorizationCodeUser(HttpUser):
 
     def on_start(self):
-        with self.client.get("/authenticated/hello", verify=False) as response:
+        with self.client.get("/login", verify=False) as response:
             logging.info(response)
             print(response)
             parsed = parse_html(response.text, "html.parser")
@@ -21,5 +21,5 @@ class AuthorizationCodeUser(HttpUser):
 
     @task
     def main_page(self):
-        with self.client.get("/authenticated/hello", verify=False) as response:
+        with self.client.get("/admin", verify=False) as response:
             pass
