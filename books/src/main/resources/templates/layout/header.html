@@ -7,5 +7,7 @@
         <a href="/hugo">Hugo Awards</a>
         &lt;&gt;
         <a href="/admin">Admin</a>
+        <span sec:authorize="isAuthenticated()">&lt;&gt;</span>
+        <a sec:authorize="isAuthenticated()" href="/logout">Logout</a>
     </nav>
 </div>

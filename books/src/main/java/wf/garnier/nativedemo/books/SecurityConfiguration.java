@@ -18,10 +18,16 @@ public class SecurityConfiguration {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.authorizeHttpRequests(auth -> {
-			auth.requestMatchers("/admin/**").authenticated();
-			auth.anyRequest().permitAll();
-		}).formLogin(Customizer.withDefaults()).build();
+		//@formatter:off
+		return http
+				.authorizeHttpRequests(auth -> {
+					auth.requestMatchers("/admin/**").authenticated();
+					auth.anyRequest().permitAll();
+				})
+				.formLogin(Customizer.withDefaults())
+				.logout(logout -> logout.logoutSuccessUrl("/books"))
+				.build();
+		//@formatter:on
 	}
 
 	@Bean
