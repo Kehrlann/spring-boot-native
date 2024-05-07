@@ -48,9 +48,10 @@ Software Engineer @ Broadcom
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -61,9 +62,10 @@ Software Engineer @ Broadcom
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -106,9 +108,10 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -122,46 +125,6 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 > Building a standalone binary with the native-image tool takes place under a “closed world assumption”. The `native-image` tool performs an analysis to see which classes, methods, and fields within your application are reachable and must be included in the native image. The analysis is static: it does not run your application. This means that all the bytecode in your application that can be called at run time must be known (observed and analyzed) at build time.
 
 Source: https://www.graalvm.org/latest/reference-manual/native-image/
-
----
-
-# "Closed-world" impact on Spring
-
-&nbsp;
-
-🚨️ Annotations that select classes dynamically to be avoided
-
-- `@Profile`
-- `@ConditionalOn...`
-
-✅ Other annotations are fine
-
-- Not related to classes - `@Value`
-- Not conditional - `@Configuration`, `@Controller`, ...
-
----
-
-# "Closed-world"
-
-<br />
-
-### 🧑‍💻 `@Profile` & `@Conditional` demo
-
----
-
-# "Closed-world" impact on Spring
-
-&nbsp;
-
-🚨️ Annotations that select classes dynamically to be avoided
-
-- `@Profile`
-- `@ConditionalOn...`
-
-✅ Other annotations are fine
-
-- Not related to classes - `@Value`
-- Not conditional - `@Configuration`, `@Controller`, ...
 
 ---
 
@@ -191,9 +154,10 @@ Supported when included at build time: `-J-javaagent:agent.jar`
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -206,7 +170,7 @@ Supported when included at build time: `-J-javaagent:agent.jar`
 
 Supported by GraalVM, but classes must be pre-registered:
 
-- AOT processing avec Spring
+- AOT processing with Spring
 - [GraalVM Metadata repository](https://www.graalvm.org/native-image/libraries-and-frameworks/)
 - `reflect-config.json`
 
@@ -238,9 +202,10 @@ For Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -261,9 +226,10 @@ For Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -315,6 +281,59 @@ layout: fact
 
 # 👷️ 🥽 🦺️
 
+---
+
+# Migrating Spring apps to Native
+
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
+1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
+1. 🕵️ Unsupported libraries
+1. 💻 Packaging and distribution: CPU, libc
+1. 🏃 Performance
+
+---
+
+# "Closed-world" impact on Spring
+
+&nbsp;
+
+🚨️ Annotations that select classes dynamically to be avoided
+
+- `@Profile`
+- `@ConditionalOn...`
+
+✅ Other annotations are fine
+
+- Not related to classes - `@Value`
+- Not conditional - `@Configuration`, `@Controller`, ...
+
+---
+
+# "Closed-world" impact on Spring
+
+<br />
+
+### 🧑‍💻 `@Profile` & `@Conditional` demo
+
+---
+
+# "Closed-world" impact on Spring
+
+&nbsp;
+
+🚨️ Annotations that select classes dynamically to be avoided
+
+- `@Profile`
+- `@ConditionalOn...`
+
+✅ Other annotations are fine
+
+- Not related to classes - `@Value`
+- Not conditional - `@Configuration`, `@Controller`, ...
 
 ---
 
@@ -322,9 +341,10 @@ layout: fact
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -368,9 +388,10 @@ tl;dr:
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -400,9 +421,10 @@ tl;dr:
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Limitation: Reflection
-1. ✋ Other dynamic behaviors
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
