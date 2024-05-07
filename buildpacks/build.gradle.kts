@@ -55,6 +55,7 @@ project.afterEvaluate {
     val excludedTasks = listOf(
         tasks.bootRun,
         tasks.processAot,
+        tasks.processTestAot,
         tasks.nativeCompile,
         tasks.nativeTest,
         tasks.nativeTestCompile,
