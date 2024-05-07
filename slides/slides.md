@@ -293,25 +293,9 @@ layout: fact
 
 # "Closed-world" impact on Spring
 
-&nbsp;
-
-🚨️ Annotations that select classes dynamically to be avoided
-
-- `@Profile`
-- `@ConditionalOn...`
-
-✅ Other annotations are fine
-
-- Not related to classes - `@Value`
-- Not conditional - `@Configuration`, `@Controller`, ...
-
----
-
-# "Closed-world" impact on Spring
-
 <br />
 
-### 🧑‍💻 `@Profile` & `@Conditional` demo
+### 🧑‍💻 `@Profile` & `@ConditionalOn...` demo
 
 ---
 
@@ -345,7 +329,25 @@ layout: fact
 
 ---
 
-# TODO
+# Unsupported libraries
+
+(everybody needs a spreadsheet)
+
+<br />
+
+### 🧑‍💻 Apache POI demo
+
+---
+
+# Unsupported librairies
+
+&nbsp;
+
+- Check compatibility
+  - Some libs are completely unsupported (hi, `log4j2`)
+  - Some may have limitations (`awt` on macOS)
+- For everything else, use the tracing agent
+  - `-agentlib:native-image-agent=config-output-dir=/...`
 
 ---
 
@@ -367,20 +369,6 @@ layout: fact
 
 <br />
 
-- CPU architecture matters
-- By default, `libc` matters
-- No cross-compilation
-  - Compile on target architecture (think: Linux x86_84)
-- By default, dynamically linked against `libc`
-  - Can't compile on ubuntu and run on alpine
-- Use buildpacks!
-
----
-
-# Packaging and distribution
-
-<br />
-
 ### 🧑‍💻 Distribution demo
 
 ---
@@ -391,8 +379,10 @@ layout: fact
 
 tl;dr:
 
-- Compile on target architecture (think: Linux x86_84)
-- Buildpacks!
+- Compile on target architecture (think: Linux x86_84 + Ubuntu)
+  - No cross-compilation
+- If using alpine, compile on alpine (`libc` matters)
+- When using containers: use buildpacks
 
 ---
 
@@ -440,13 +430,22 @@ Reach out:
 ---
 layout: image-right
 image: /qr-code.png
+class: smaller
 ---
 
-# 🤔 Questions?
+# Feedback 👉👉
 
+&nbsp;
+
+Reach out:
+- <logos-mastodon-icon /> @Kehrlann@hachyderm.io
+- <logos-twitter /> @Kehrlann
+- <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
+
+<br />
+<br />
+
+> Like & subscribe lol
+> - _Traditional Youtube greeting
 <br>
-
-Feedback 👉👉
-
-Feedback helps a lot! 🙇
-
+>   (ca 2024)_
