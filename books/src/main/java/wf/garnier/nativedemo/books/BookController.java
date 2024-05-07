@@ -19,14 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BookController {
 
-	// TODO:
-	// - security
-
-	// Ideas:
-	// - @Conditional: same goes for Boot-auto configuration
-
-	// TODO: null-safety
-
 	private final BookRepository bookRepo;
 
 	private final String pageTitle;
