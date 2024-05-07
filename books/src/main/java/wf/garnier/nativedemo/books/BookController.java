@@ -39,6 +39,11 @@ public class BookController {
         this.exportService = exportService;
     }
 
+	@GetMapping
+	public String index() {
+		return "redirect:/books";
+	}
+
 	@GetMapping("/books")
 	public String book(Model model) {
 		model.addAttribute("pageTitle", pageTitle);
