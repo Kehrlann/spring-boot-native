@@ -5,6 +5,9 @@
     <title>My Books</title>
 </head>
 <body>
+
+<div th:insert="layout/header"></div>
+
 <h1 th:text="${pageTitle}"></h1>
 <ul th:each="book: ${books}">
     <li><a th:href="${'/book/' + book.slug()}" th:text="${book.title()}"></a></li>

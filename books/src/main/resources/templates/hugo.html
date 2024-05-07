@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:insert="layout/header"></div>
+
 <h1>Hugo Awards</h1>
 <ul th:each="book: ${books}">
     <li><span th:text="${book.title() + ' - ' + book.author() + ' (' + book.year() + ')'}"></span></li>

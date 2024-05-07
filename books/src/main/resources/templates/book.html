@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:insert="layout/header"></div>
+
 <h1 th:text="${@titleEnhancer.enhance(book.title())}"></h1>
 <h2>Synopsis</h2>
 <p th:text="${book.synopsis()}"></p>
