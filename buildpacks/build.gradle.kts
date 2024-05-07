@@ -36,6 +36,20 @@ tasks.bootBuildImage {
     publish = false
 }
 
+tasks.format {
+    // Make sure we only format the Main and Test source sets, not the AOT-generated sources.
+    dependsOn.clear()
+    dependsOn(tasks.formatMain)
+    dependsOn(tasks.formatTest)
+}
+
+tasks.checkFormat {
+    // Make sure we only checkFormat the Main and Test source sets, not the AOT-generated sources.
+    dependsOn.clear()
+    dependsOn(tasks.checkFormatMain)
+    dependsOn(tasks.checkFormatTest)
+}
+
 // Disable time-consuming tasks. This is a demo, we don't want those tasks to run from the root project.
 project.afterEvaluate {
     val excludedTasks = listOf(
