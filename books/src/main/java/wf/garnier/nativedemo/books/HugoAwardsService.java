@@ -47,8 +47,8 @@ public class HugoAwardsService {
 		this.restClient = restClientBuilder.baseUrl(upstreamUrl).build();
 	}
 
-	private record ApiResponse(Integer count, List<Entry> results) {
-		private record Entry(String title, String author, Integer year) {
+	public record ApiResponse(Integer count, List<Entry> results) {
+		public record Entry(String title, String author, Integer year) {
 		}
 	}
 
