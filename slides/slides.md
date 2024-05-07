@@ -46,7 +46,7 @@ Software Engineer @ Broadcom
 
 # Migrating Spring apps to Native
 
-1. 📚 Java Native Images refresher
+1. 📚 Java Native Image refresher
 1. 🏺️ "Closed-world" assumption
 1. 🪞️ Closed-world: Reflection
 1. ✋ Closed-world: Everything else
@@ -60,7 +60,7 @@ Software Engineer @ Broadcom
 
 # Migrating Spring apps to Native
 
-1. 📚 Java Native Images refresher
+1. 📚 **Java Native Image refresher**
 1. 🏺️ "Closed-world" assumption
 1. 🪞️ Closed-world: Reflection
 1. ✋ Closed-world: Everything else
@@ -107,7 +107,7 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 # Migrating Spring apps to Native
 
 1. 📚 Java Native Images refresher
-1. 🏺️ "Closed-world" assumption
+1. 🏺️ **"Closed-world" assumption**
 1. 🪞️ Closed-world: Reflection
 1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
@@ -154,7 +154,7 @@ Supported when included at build time: `-J-javaagent:agent.jar`
 
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
-1. 🪞️ Closed-world: Reflection
+1. 🪞️ **Closed-world: Reflection**
 1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
 1. 🍃️ Closed-world: Spring annotations
@@ -203,7 +203,7 @@ For Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 1. 📚 Java Native Images refresher
 1. 🏺️ "Closed-world" assumption
 1. 🪞️ Closed-world: Reflection
-1. ✋ Closed-world: Everything else
+1. ✋ **Closed-world: Everything else**
 1. 🧑‍🔬 Testing
 1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
@@ -228,7 +228,7 @@ For Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
 1. 🏺️ "Closed-world" assumption
 1. 🪞️ Closed-world: Reflection
 1. ✋ Closed-world: Everything else
-1. 🧑‍🔬 Testing
+1. 🧑‍🔬 **Testing**
 1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
@@ -290,7 +290,7 @@ layout: fact
 1. 🪞️ Closed-world: Reflection
 1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
-1. 🍃️ Closed-world: Spring annotations
+1. 🍃️ **Closed-world: Spring annotations**
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
 1. 🏃 Performance
@@ -345,8 +345,26 @@ layout: fact
 1. ✋ Closed-world: Everything else
 1. 🧑‍🔬 Testing
 1. 🍃️ Closed-world: Spring annotations
-1. 🕵️ Unsupported libraries
+1. 🕵️ **Unsupported libraries**
 1. 💻 Packaging and distribution: CPU, libc
+1. 🏃 Performance
+
+---
+
+# TODO
+
+---
+
+# Migrating Spring apps to Native
+
+1. 📚 Java Native Images refresher
+1. 🏺️ "Closed-world" assumption
+1. 🪞️ Closed-world: Reflection
+1. ✋ Closed-world: Everything else
+1. 🧑‍🔬 Testing
+1. 🍃️ Closed-world: Spring annotations
+1. 🕵️ Unsupported libraries
+1. 💻 **Packaging and distribution: CPU, libc**
 1. 🏃 Performance
 
 ---
@@ -394,7 +412,7 @@ tl;dr:
 1. 🍃️ Closed-world: Spring annotations
 1. 🕵️ Unsupported libraries
 1. 💻 Packaging and distribution: CPU, libc
-1. 🏃 Performance
+1. 🏃 **Performance**
 
 ---
 
@@ -414,20 +432,6 @@ tl;dr:
 - Instant peak performance
 - Less-resource hungry
 - JVM scales better over time*
-
----
-
-# Migrating Spring apps to Native
-
-1. 📚 Java Native Images refresher
-1. 🏺️ "Closed-world" assumption
-1. 🪞️ Closed-world: Reflection
-1. ✋ Closed-world: Everything else
-1. 🧑‍🔬 Testing
-1. 🍃️ Closed-world: Spring annotations
-1. 🕵️ Unsupported libraries
-1. 💻 Packaging and distribution: CPU, libc
-1. 🏃 Performance
 
 ---
 
