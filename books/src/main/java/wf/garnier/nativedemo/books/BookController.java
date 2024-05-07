@@ -30,14 +30,14 @@ public class BookController {
 	private final ExportService exportService;
 
 	public BookController(BookRepository bookRepo, HugoAwardsService hugoAwardsService,
-                          Jackson2ObjectMapperBuilder objectMapperBuilder,
-                          @Value("${book.title:My Book Collection}") String pageTitle, ExportService exportService) {
+			Jackson2ObjectMapperBuilder objectMapperBuilder,
+			@Value("${book.title:My Book Collection}") String pageTitle, ExportService exportService) {
 		this.bookRepo = bookRepo;
 		this.hugoAwardsService = hugoAwardsService;
 		this.objectMapper = objectMapperBuilder.build();
 		this.pageTitle = pageTitle;
-        this.exportService = exportService;
-    }
+		this.exportService = exportService;
+	}
 
 	@GetMapping
 	public String index() {
