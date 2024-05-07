@@ -16,4 +16,4 @@ java -Dspring.aot.enabled=true \
         simple/build/libs/simple-0.0.1-SNAPSHOT.jar
 ```
 
-Don't forget to run the export through `http://localhost:8080/book/export` so that Apache POI code paths are triggered.
+Don't forget to run the export through `http://localhost:8080/books/export` so that Apache POI code paths are triggered.
