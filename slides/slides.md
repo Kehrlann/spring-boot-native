@@ -142,14 +142,6 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 
 ---
 
-# "Closed-world": Java Agents
-
-<br />
-
-Supported when included at build time: `-J-javaagent:agent.jar`
-
----
-
 # Migrating Spring apps to Native
 
 1. 📚 Java Native Images refresher
@@ -218,6 +210,8 @@ For Spring: `@ImportRuntimeHints` + `@RegisterReflectionForBinding`
   - Spring covers config files, DB schemas, templates, banner ...
 - Java serialization (`implements Serializable`)
 - JNI
+- Java agents
+  - Include them at build-time: `-J-javaagent:agent.jar`
 - Other limitations: [Spring Boot Wiki](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-with-GraalVM)
 
 ---
