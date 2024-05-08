@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div th:insert="layout/header"></div>
+<div th:insert="~{layout/header}"></div>
 
 <h1 th:text="${pageTitle}"></h1>
 <ul th:each="book: ${books}">
