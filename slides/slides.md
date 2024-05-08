@@ -162,9 +162,9 @@ Source: https://www.graalvm.org/latest/reference-manual/native-image/
 
 Supported by GraalVM, but classes must be pre-registered:
 
-- AOT processing with Spring
-- [GraalVM Metadata repository](https://www.graalvm.org/native-image/libraries-and-frameworks/)
 - `reflect-config.json`
+- [GraalVM Metadata repository](https://www.graalvm.org/native-image/libraries-and-frameworks/)
+- AOT processing with Spring
 
 ---
 
