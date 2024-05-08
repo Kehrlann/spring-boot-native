@@ -422,33 +422,15 @@ tl;dr:
 Repo:
 - <logos-github-icon /> https://github.com/Kehrlann/spring-boot-native
 
-Reach out:
-- <logos-mastodon-icon /> @Kehrlann@hachyderm.io
-- <logos-twitter /> @Kehrlann
-- <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
-
----
-layout: image-right
-image: /qr-code.png
-class: smaller
----
-
-# Feedback 👉👉
-
-&nbsp;
+<div style="float:right; margin-right: 00px; text-align: center;">
+  <img src="/qr-code.png" style="margin-bottom: -45px; margin-top: 15px;" >
+</div>
 
 Reach out:
 - <logos-mastodon-icon /> @Kehrlann@hachyderm.io
 - <logos-twitter /> @Kehrlann
+- <logos-firefox /> https://garnier.wf/
 - <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
-
-<br />
-<br />
-
-> Like & subscribe lol
-> - _Traditional Youtube greeting
-<br>
->   (ca 2024)_
 
 ---
 layout: image
