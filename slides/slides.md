@@ -347,7 +347,9 @@ layout: fact
   - Some libs are completely unsupported (hi, `log4j2`)
   - Some may have limitations (`awt` on macOS)
 - For everything else, use the tracing agent
-  - `-agentlib:native-image-agent=config-output-dir=/...`
+  - `./gradlew -Pagent bootRun`
+  - `./mvnw -P native -Dagent=true spring-boot:run`
+  - `java -agentlib:native-image-agent=config-output-dir=/...`
 
 ---
 
