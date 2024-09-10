@@ -1,10 +1,10 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.2.5"
-    id("io.spring.dependency-management") version "1.1.4"
-    id("io.spring.javaformat") version "0.0.41"
-    id("org.graalvm.buildtools.native") version "0.10.1"
-    id("com.dorongold.task-tree") version "3.0.0"
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
+    id("io.spring.javaformat")
+    id("org.graalvm.buildtools.native")
+    id("com.dorongold.task-tree")
     // Note: this must match the "book" project's build script.
     // See https://github.com/gradle/gradle/issues/17559
     // We could put it all under the root settings, but I want the "books"
@@ -18,9 +18,6 @@ java {
     sourceCompatibility = JavaVersion.VERSION_21
 }
 
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
