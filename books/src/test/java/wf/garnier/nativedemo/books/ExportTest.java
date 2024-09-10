@@ -16,19 +16,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ExportTest {
 
-    @Autowired
-    MockMvc mockMvc;
+	@Autowired
+	MockMvc mockMvc;
 
-    @Test
-    void export() throws Exception {
-        var contentLength = mockMvc.perform(get("/books/export"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().contentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                .andReturn()
-                .getResponse()
-                .getContentLength();
+	@Test
+	void export() throws Exception {
+		var contentLength = mockMvc.perform(get("/books/export"))
+			.andExpect(status().is2xxSuccessful())
+			.andExpect(content().contentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+			.andReturn()
+			.getResponse()
+			.getContentLength();
 
-        assertThat(contentLength).isGreaterThan(3000);
-    }
+		assertThat(contentLength).isGreaterThan(3000);
+	}
 
 }
