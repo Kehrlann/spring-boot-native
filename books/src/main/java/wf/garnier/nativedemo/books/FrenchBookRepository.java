@@ -44,6 +44,45 @@ class FrenchBookRepository implements BookRepository {
 						"la-planete-des-singes"
 				)
 		);
+		books.put(
+				"vingt-mille-lieues-sous-les-mers",
+				new Book(
+						"Vingt Mille Lieues sous les mers",
+						"Jules Vernes",
+						"Roman d'aventures",
+						"""
+						Vingt Mille Lieues sous les mers est un roman d'aventures de Jules Verne, paru en 1869-1870. Il
+						relate le voyage de trois naufragés capturés par le capitaine Nemo, mystérieux inventeur qui
+						parcourt les fonds des mers à bord du Nautilus, un sous-marin très en avance sur les
+						technologies de l'époque.
+						""",
+						LocalDate.of(1869, Month.JANUARY, 1),
+						"vingt-mille-lieues-sous-les-mers"
+				)
+		);
+		books.put(
+				"la-zone-du-dehors",
+				new Book(
+						"La Zone du Dehors",
+						"Alain Damasio",
+						"Roman d'anticipation",
+						"""
+						Il s'agit d'un roman d’anticipation qui s’intéresse aux sociétés de contrôle sous le modèle
+						démocratique. On y suit la vie « molle » des habitants de Cerclon, société démocratique (ou
+						pseudo-démocratique) installée sur un satellite imaginaire de Saturne en 20841. La société de
+						Cerclon est caractérisée par le clastre : tous les deux ans, tous les citoyens se réunissent
+						pour « classer » leurs compatriotes selon leur comportement, leur efficacité au travail, etc. De
+						l'issue du clastre, dépendent le nom (composé d'un code de lettres) de l'individu (en
+						développant l'idée de « dividu » n'existant que dans son rapport à la masse) et sa place dans le
+						système. Les habitants de Cerclon se surveillent donc mutuellement et doivent, sous peine de
+						déclassement, rester dans la « norme ». Le quotidien de cette société se voit secoué par les
+						actions subversives de la « Volte », groupuscule contestataire qui ira jusqu’au bout de sa
+						« volution ».
+						""",
+						LocalDate.of(1999, Month.JANUARY, 1),
+						"la-zone-du-dehors"
+				)
+		);
 		//@formatter:on
 	}
 
