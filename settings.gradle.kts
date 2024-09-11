@@ -1,5 +1,5 @@
 rootProject.name = "spring-boot-native-samples"
-include("books", "buildpacks")
+include("books", "examples", "buildpacks")
 
 pluginManagement {
     repositories {

@@ -1,0 +1,49 @@
+services:
+  nginx:
+    image: nginx:1.25.5-alpine
+    ports:
+      - "8000:80"
+    configs:
+      - source: hugo_awards
+        target: /usr/share/nginx/html/hugo.json
+
+
+configs:
+  hugo_awards:
+    content: |
+      {
+        "count": 6,
+        "results": [
+          {
+            "title": "Nettle & Bone",
+            "author": "T. Kingfisher",
+            "year":  2023
+          },
+          {
+            "title": "A Desolation Called Peace",
+            "author": "Arkady Martine",
+            "year":  2022
+          },
+          {
+            "title": "Network Effect",
+            "author": "Martha Wells",
+            "year":  2021
+          },
+          {
+            "title": "A Memory Called Empire",
+            "author": "Arkady Martine",
+            "year":  2020
+          },
+          {
+            "title": "The Calculating Stars",
+            "author": "Mary Robinette Kowal",
+            "year":  2019
+          },
+          {
+            "title": "The Stone Sky",
+            "author": "N. K. Jemisin",
+            "year":  2018
+          }
+        ]
+      }
+            

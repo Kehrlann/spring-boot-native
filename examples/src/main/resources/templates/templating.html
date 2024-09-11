@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring ❤️ GraalVM: Templating</title>
+</head>
+<body>
+
+<h1>Spring ❤️ GraalVM: Templating</h1>
+<p>
+    For templates to work, they must not involve reflection.
+    This means no calling code, even simple getters!
+</p>
+<p>
+    Here's a list of books for you:
+</p>
+<ul>
+    <li th:each="book: ${books}" th:text="${book.title()}"></li>
+</ul>
+
+</body>
+</html>
