@@ -38,9 +38,9 @@ tasks.withType<Test> {
 }
 
 graalvmNative {
-//    binaries.all {
-//        buildArgs.add("-Ob")
-//    }
+    binaries.all {
+        buildArgs.add("-Ob")
+    }
 }
 
 tasks.format {
