@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring ❤️ GraalVM: Beans & Conditionals</title>
+</head>
+<body>
+
+<h1>Spring ❤️ GraalVM: Beans & Conditionals</h1>
+<p>
+    Beans and conditionals are evaluated at <strong>build</strong> time.
+</p>
+<ul>
+    <li><strong>Active profiles:</strong> <span th:text="${profiles}"></span></li>
+    <li><strong>Language service (loaded on @Profile):</strong> <span th:text="${languageService}"></span></li>
+    <li><strong>Value of app.mood:</strong> <span th:text="${appMood}"></span></li>
+    <li><strong>MoodService (loaded on @ConditionalOnProperty):</strong> <span th:text="${moodService}"></span></li>
+</ul>
+
+</body>
+</html>

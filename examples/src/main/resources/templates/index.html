@@ -19,7 +19,7 @@
 <p>This page is generated with a simple Thymeleaf template. By the way, this page was loaded at <span
         th:text="${now}"></span>.</p>
 
-<p>Conclusion: thymeleaf (and other) templates are fine. So you can even pass variables, wow.</p>
+<p>Conclusion: thymeleaf (and other) templates are fine. You can even pass variables.</p>
 
 
 <h2>Templating Strikes Back</h2>
@@ -39,6 +39,13 @@
 <p><a href="/json/write">JSON writing</a></p>
 <p><a href="/json/api">JSON API with Spring</a></p>
 
+<h2>@Conditional and @Profile</h2>
+<p>Profiles and properties are taken into account at runtime, but the application context is decided
+    at build time, and won't change.
+</p>
+<p><a href="/beans">Take a look</a></p>
+
+<h2>That's all for now :)</h2>
 
 </body>
 </html>
