@@ -83,7 +83,7 @@ class EnglishBookRepository implements BookRepository {
 		books.put(
 				"jonathan-strange-and-mr-norrell",
 				new Book(
-						"Jonathan Strange & Mister Norrell",
+						"Jonathan Strange & Mr Norrell",
 						"Susanna Clarke",
 						"Alternative history",
 						"""
