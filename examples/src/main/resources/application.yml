@@ -6,4 +6,4 @@ spring:
     cache: false
   docker:
     compose:
-      enabled: false
+      file: classpath:/compose.yml

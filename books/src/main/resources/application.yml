@@ -1,3 +1,7 @@
 # keep
 server:
   address: 127.0.0.1
+spring:
+  docker:
+    compose:
+      file: classpath:/compose.yaml
