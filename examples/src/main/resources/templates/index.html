@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring ❤️ GraalVM</title>
+    <style>
+        h2 {
+            margin-top: 20rem;
+        }
+    </style>
 </head>
 <body>
 
 <h1>Spring ❤️ GraalVM</h1>
 <p>Here is a list of things that work and don't work out-of-the-box with Spring in Native Images.</p>
+
 
 <h2>Templates</h2>
 <p>This page is generated with a simple Thymeleaf template. By the way, this page was loaded at <span
@@ -15,9 +21,16 @@
 
 <p>Conclusion: thymeleaf (and other) templates are fine. So you can even pass variables, wow.</p>
 
+
 <h2>Templating Strikes Back</h2>
 <p>Actually, some things don't work in templates. Specifically, any non-primitive type.</p>
 <p><a href="/templating">Take a look</a></p>
+
+
+<h2>Other magic strings</h2>
+<p>Everytime you have string that contains code, there will be reflection involved. This applies,
+    for example, to <strong>@PreAuthorize("...")</strong> method security.</p>
+<p><a href="/authorization">Take a look</a></p>
 
 </body>
 </html>

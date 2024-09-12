@@ -15,7 +15,7 @@ class TemplatingController {
 		model.addAttribute(
 				"books",
 				List.of(
-						new Book("Jonathan Strange & Mr Norrel"),
+						new Book("Jonathan Strange & Mr Norrell"),
 						new Book("The Three-Body Problem"),
 						new Book("The Fifth Season")
 				)
