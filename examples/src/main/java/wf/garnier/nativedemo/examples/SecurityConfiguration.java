@@ -1,5 +1,6 @@
 package wf.garnier.nativedemo.examples;
 
+import org.springframework.aot.hint.annotation.Reflective;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -38,6 +39,7 @@ class SecurityConfiguration {
 
 	static class AuthorizationService {
 
+		@Reflective
 		public boolean isAllowed(Authentication authentication) {
 			System.out.println(authentication);
 			if (authentication == null) {
