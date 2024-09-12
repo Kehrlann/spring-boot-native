@@ -40,6 +40,12 @@ tasks.withType<Test> {
 graalvmNative {
     binaries.all {
         buildArgs.add("-Ob")
+
+        // Control parallelism (how many threads)
+        // buildArgs.add("--parallelism=2")
+
+        // Control RAM percentage
+        // buildArgs.add("-J-XX:MaxRAMPercentage=10.0")
     }
 }
 
