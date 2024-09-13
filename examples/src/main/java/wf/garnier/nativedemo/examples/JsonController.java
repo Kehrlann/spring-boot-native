@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,8 @@ class JsonController {
 
 	private final RestClient restClient;
 
-	JsonController(RestClient.Builder restClientBuilder) {
-		this.restClient = restClientBuilder
-			// see compose.yaml
-			.baseUrl("http://localhost:8001/")
-			.build();
+	JsonController(RestClient.Builder restClientBuilder, @Value("api.server") String apiServer) {
+		this.restClient = restClientBuilder.baseUrl(apiServer).build();
 	}
 
 	@GetMapping("/json/read")

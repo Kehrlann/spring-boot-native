@@ -26,6 +26,7 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("org.testcontainers:testcontainers")
     testImplementation("org.springframework.boot:spring-boot-testcontainers") // ~~
 }
 
@@ -67,10 +68,6 @@ tasks.test {
     testLogging {
         events = setOf(TestLogEvent.STARTED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
     }
-}
-
-tasks.nativeTest {
-    enabled = false
 }
 
 tasks.bootBuildImage {
