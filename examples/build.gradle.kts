@@ -27,7 +27,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.testcontainers:testcontainers")
-    testImplementation("org.springframework.boot:spring-boot-testcontainers") // ~~
+    testImplementation("org.testcontainers:nginx:1.20.0")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers")
 }
 
 tasks.compileJava {

@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.NginxContainer;
+import org.testcontainers.images.builder.Transferable;
+import org.testcontainers.utility.DockerImageName;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,8 +44,6 @@ class TestConfigurationTests {
 		var response = new JsonController.RemoteApiData(2,
 				List.of(new JsonController.BookApiResponse("Speaker for the Dead", "Orson Scott Card"),
 						new JsonController.BookApiResponse("Hyperion", "Dan Simmons")));
-		when(config.mockRestClient.get().uri("/hugo.json").retrieve().body(eq(JsonController.RemoteApiData.class)))
-			.thenReturn(response);
 		assertThat(jsonController.readJson(mockModel)).isEqualTo("json");
 		verify(mockModel).addAttribute("method", "restClient.get()");
 		verify(mockModel).addAttribute("data", response.toString());
@@ -52,16 +53,31 @@ class TestConfigurationTests {
 	@TestConfiguration
 	static class SwapBeanConfiguration {
 
-		public RestClient mockRestClient = mock(RestClient.class, RETURNS_DEEP_STUBS);
+		@Bean
+		public NginxContainer<?> nginxContainer() {
+			return new NginxContainer<>(DockerImageName.parse("nginx:1.25.5-alpine"))
+				.withCopyToContainer(Transferable.of("""
+						{
+						  "count": 2,
+						  "results": [
+						    {
+						      "title": "Speaker for the Dead",
+						      "author": "Orson Scott Card",
+						      "year":  1986
+						    },
+						    {
+						      "title": "Hyperion",
+						      "author": "Dan Simmons",
+						      "year":  1991
+						    }
+						  ]
+						}
+						"""), "/usr/share/nginx/html/hugo.json");
+		}
 
 		@Bean
-		JsonController jsonController() {
-			// Can only mock interfaces, not concrete types
-			// So we can't mock JsonController directly
-			var mockBuilder = mock(RestClient.Builder.class);
-			when(mockBuilder.baseUrl("https://api.example.com")).thenReturn(mockBuilder);
-			when(mockBuilder.build()).thenReturn(mockRestClient);
-			return new JsonController(mockBuilder, "https://api.example.com");
+		JsonController jsonController(RestClient.Builder builder, NginxContainer<?> container) {
+			return new JsonController(builder, "http://localhost:%s".formatted(container.getFirstMappedPort()));
 		}
 
 	}
