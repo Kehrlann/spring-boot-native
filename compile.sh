@@ -14,7 +14,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 set -u
 
 # GraalVM 22
-sdk use java 22-graal
+sdk use java 23.ea.24-graal
 
 ./gradlew clean bootJar
 cp books/build/libs/books-0.0.1-SNAPSHOT.jar artifacts
