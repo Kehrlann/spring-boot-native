@@ -20,9 +20,4 @@ sdk use java 23.ea.24-graal
 cp books/build/libs/books-0.0.1-SNAPSHOT.jar artifacts
 
 ./gradlew clean nativeCompile
-cp books/build/native/nativeCompile/books artifacts/native-graal-ee
-
-# GraalVM 22 Community edition
-sdk use java 22-graalce
-./gradlew clean nativeCompile
-cp books/build/native/nativeCompile/books artifacts/native-graal-ce
+cp books/build/native/nativeCompile/books artifacts/native-graal
