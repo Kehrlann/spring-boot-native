@@ -5,7 +5,6 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,10 +57,8 @@ class JsonController {
 	 *
 	 * It's equivalent to calling "objectMapper.readValue(...)"
 	 */
-	@RegisterReflectionForBinding
-	public record RemoteApiData(int count, List<BookApiResponse> results) {
-		@RegisterReflectionForBinding
-		public record BookDeserializationResult(String title, String author, int year) {
+	record RemoteApiData(int count, List<BookApiResponse> results) {
+		record BookDeserializationResult(String title, String author, int year) {
 		}
 
 	}
@@ -69,13 +66,13 @@ class JsonController {
 	/**
 	 * We write JSON of this data using "objectMapper.writeValueAsString(...)"
 	 */
-	public record BookToSerialize(String title, String author) {
+	record BookToSerialize(String title, String author) {
 	}
 
 	/**
 	 * We send this as the response body of one of our controller methods.
 	 */
-	public record BookApiResponse(String title, String author) {
+	record BookApiResponse(String title, String author) {
 	}
 
 }
