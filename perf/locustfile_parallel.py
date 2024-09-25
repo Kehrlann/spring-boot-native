@@ -28,13 +28,13 @@ class AuthorizationCodeUser(HttpUser):
 
 class Native(AuthorizationCodeUser):
 
-    base_url = "http://localhost:8081"
-    host = "http://localhost:8081"
+    base_url = "http://localhost:9001"
+    host = "http://localhost:9001"
     name = "native"
 
 class Jvm(AuthorizationCodeUser):
 
-    base_url = "http://localhost:8080"
-    host = "http://localhost:8080"
+    base_url = "http://localhost:9000"
+    host = "http://localhost:9000"
     name = "jvm"
 
