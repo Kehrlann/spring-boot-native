@@ -2,7 +2,7 @@ services:
   nginx:
     image: nginx:1.25.5-alpine
     ports:
-      - "8001:80"
+      - "8000:80"
     configs:
       - source: hugo_awards
         target: /usr/share/nginx/html/hugo.json

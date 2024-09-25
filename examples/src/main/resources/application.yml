@@ -8,4 +8,4 @@ spring:
     compose:
       file: classpath:/compose.yml
 api:
-  server: http://localhost:8001
+  server: http://localhost:8000
