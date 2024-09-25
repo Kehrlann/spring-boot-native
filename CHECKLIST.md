@@ -7,3 +7,5 @@
 - [ ] Remove runtime hints for books app
 - [ ] Compile books app (bootJar + nativeCompile)
 - [ ] htop -F books
+- [ ] IDEA is running
+
