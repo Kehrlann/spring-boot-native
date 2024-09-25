@@ -1,6 +1,6 @@
 # keep
 server:
-  port: 8081
+  port: 8080
 spring:
   thymeleaf:
     cache: false
