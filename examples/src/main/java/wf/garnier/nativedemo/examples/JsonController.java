@@ -20,7 +20,7 @@ class JsonController {
 
 	private final RestClient restClient;
 
-	JsonController(RestClient.Builder restClientBuilder, @Value("api.server") String apiServer) {
+	JsonController(RestClient.Builder restClientBuilder, @Value("${api.server}") String apiServer) {
 		this.restClient = restClientBuilder.baseUrl(apiServer).build();
 	}
 
