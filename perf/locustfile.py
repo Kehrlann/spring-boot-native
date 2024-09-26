@@ -1,12 +1,12 @@
 from bs4 import BeautifulSoup as parse_html
 import logging
-from locust import HttpUser, User, tag, task
+from locust import FastHttpUser, task
 
 
-class AuthorizationCodeUser(HttpUser):
+class AuthorizationCodeUser(FastHttpUser):
 
     def on_start(self):
-        with self.client.get("/login", verify=False) as response:
+        with self.client.get("/login") as response:
             logging.info(response)
             print(response)
             parsed = parse_html(response.text, "html.parser")
@@ -14,12 +14,11 @@ class AuthorizationCodeUser(HttpUser):
             print(parsed)
             csrf = parsed.css.select_one('input[name="_csrf"]')["value"]
             self.client.post(
-                "/login.do",
+                "/login",
                 {"username": "alice", "password": "password", "_csrf": csrf},
-                verify=False,
             )
 
     @task
     def main_page(self):
-        with self.client.get("/admin", verify=False) as response:
+        with self.client.get("/admin") as response:
             pass

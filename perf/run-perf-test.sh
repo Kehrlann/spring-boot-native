@@ -2,8 +2,11 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+pushd "$SCRIPT_DIR"
+
 curl -sL http://localhost:9000
-curl -s http://localhost:9001
+curl -sL http://localhost:9001
 
 poetry run locust \
   --locustfile locustfile_parallel.py \

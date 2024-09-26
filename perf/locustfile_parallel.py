@@ -1,15 +1,15 @@
 from bs4 import BeautifulSoup as parse_html
 import logging
-from locust import HttpUser, User, tag, task
+from locust import FastHttpUser, HttpUser, User, tag, task
 
 
-class AuthorizationCodeUser(HttpUser):
+class AuthorizationCodeUser(FastHttpUser):
     abstract = True
 
     def on_start(self):
-        with self.client.get("/login", verify=False, name=self.name) as response:
+        with self.client.get("/login", name=self.name) as response:
             logging.info(response)
-            print(response)
+            print(response.text)
             parsed = parse_html(response.text, "html.parser")
             logging.info(parsed)
             print(parsed)
@@ -17,24 +17,21 @@ class AuthorizationCodeUser(HttpUser):
             self.client.post(
                 "/login",
                 {"username": "alice", "password": "password", "_csrf": csrf},
-                verify=False,
                 name=self.name
             )
 
     @task
     def main_page(self):
-        with self.client.get("/admin", verify=False, name=self.name) as response:
+        with self.client.get("/admin", name=self.name) as response:
             pass
 
 class Native(AuthorizationCodeUser):
 
-    base_url = "http://localhost:9001"
     host = "http://localhost:9001"
     name = "native"
 
 class Jvm(AuthorizationCodeUser):
 
-    base_url = "http://localhost:9000"
     host = "http://localhost:9000"
     name = "jvm"
 
