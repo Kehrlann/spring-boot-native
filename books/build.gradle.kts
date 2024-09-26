@@ -43,6 +43,10 @@ tasks.withType<Test> {
 val bp: String? by project
 
 graalvmNative {
+    metadataRepository {
+        uri(file("/Users/dgarnier/tmp/graalvm-reachability-metadata-0.3.10-SNAPSHOT.zip"))
+    }
+
     binaries.all {
         buildArgs.add("-H:+AddAllCharsets") // required for Apache POI which uses the CP-1252 charset
 

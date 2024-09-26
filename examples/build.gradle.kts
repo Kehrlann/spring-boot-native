@@ -40,6 +40,10 @@ tasks.withType<Test> {
 }
 
 graalvmNative {
+    metadataRepository {
+        uri(file("/Users/dgarnier/tmp/graalvm-reachability-metadata-0.3.10-SNAPSHOT.zip"))
+    }
+
     binaries.all {
         buildArgs.add("-Ob")
 
