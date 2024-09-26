@@ -2,9 +2,9 @@
 
 - [ ] Working tree is clean
 - [ ] Artifacts are compiled
-- [ ] Dashboad is running, and clean
+- [ ] Dashboad is running, and clean, with 5 minute timeframe and 10s refresh rate
+- [ ] Docker-compose is running
 - [ ] Slides are running
-- [ ] Remove runtime hints for books app
 - [ ] Compile books app (bootJar + nativeCompile)
 - [ ] htop -F books
 - [ ] IDEA is running
