@@ -101,3 +101,44 @@ java -Dspring.aot.enabled=true \
         -jar \
         books/build/libs/books-0.0.1-SNAPSHOT.jar
 ```
+
+## PGO 
+
+Build an instrumented image:
+
+```shell
+./gradlew -Pbp=instrumented books:nativeCompile
+```
+
+Then run and apply workload (open in a browser and click around):
+
+```shell
+./books/build/native/nativeCompile/books-instrumented
+```
+
+This will generate a profiles file, `default.iprof`, in the current working directory.
+
+Build with the profiles, G1 GC, and `-march-native`:
+
+```shell
+./gradlew -Pbp=optimized books:nativeCompile
+```
+
+### Measurements
+
+The machine
+
+Linux, 16 CPU, 32 GB RAM
+
+The workload executed
+```shell
+ hey -n=100000 http://localhost:8080/books
+ ```
+
+The results
+
+Vanilla Native Image: 38685.94 req/s
+
+Native Image PGO: 46441.10 req/s
+
+Native Image PGO, G1, `march`: 47497.56

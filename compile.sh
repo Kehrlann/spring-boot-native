@@ -13,7 +13,7 @@ set +u
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 set -u
 
-# GraalVM 22
+# GraalVM 23
 sdk use java 23-graal
 
 ./gradlew clean :books:bootJar

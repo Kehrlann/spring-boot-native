@@ -39,6 +39,9 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+//val buildProfile = System.getenv("BUILD_PROFILE")
+val bp: String? by project
+
 graalvmNative {
     binaries.all {
         buildArgs.add("-H:+AddAllCharsets") // required for Apache POI which uses the CP-1252 charset
@@ -48,7 +51,27 @@ graalvmNative {
         // buildArgs.add("-H:ThrowMissingRegistrationErrors=")
         // buildArgs.add("-H:MissingRegistrationReportingMode=Warn")
         // buildArgs.add("-H:+UnlockExperimentalVMOptions")
+
+        when (bp) {
+            "instrumented" -> {
+                println("> Build profile: $bp")
+                buildArgs.add("--pgo-instrument")
+                imageName = "books-instrumented"
+            }
+            "optimized" -> {
+                println("> Build profile: $bp")
+                pgoProfilesDirectory = file("..")
+                buildArgs.add("--gc=G1")
+                buildArgs.add("-march=native")
+                imageName = "books-optimized"
+            }
+        else -> {
+            println("> Build profile: default")
+            imageName = "books"
+        }
+    
     }
+
     binaries.named("test") {
         buildArgs.add("-Ob")
     }
@@ -57,6 +80,9 @@ graalvmNative {
             buildArgs.add("-Ob")
         }
     }
+
+}
+
 }
 
 tasks.format {
@@ -126,4 +152,5 @@ if (System.getenv("DOCKER_JVM") != null) {
         // A single buildpack, for java+native, that supports arm64
         buildpacks.add("gcr.io/paketo-buildpacks/java-native-image:latest")
     }
+    
 }
