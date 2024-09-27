@@ -19,7 +19,6 @@ class MockitoBeanTests {
 
 	@Test
 	void loads() {
-		// can't use ProxyMockMaker, this is a concrete type
 		when(languageService.getName()).thenReturn("this is a mock");
 		assertThat(languageService.getName()).isEqualTo("this is a mock");
 	}

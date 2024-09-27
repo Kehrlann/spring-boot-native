@@ -1,17 +1,5 @@
+name: hugo-awards
 services:
-#  swapi:
-#    image: juriy/swapi:1.0.0
-#    ports:
-#      - "8000:8000"
-#    environment:
-#      PAGE_SIZE: 100
-#    command:
-#      - sh
-#      - "-c"
-#      - |
-#        # Update the pagination to have all resources directly without pagination
-#        sed -i "s/'PAGINATE_BY': 10/'PAGINATE_BY': 500/" swapi/settings.py
-#        ./run.sh
   nginx:
     image: nginx:1.25.5-alpine
     ports:
