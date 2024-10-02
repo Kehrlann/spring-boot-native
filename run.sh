@@ -23,10 +23,7 @@ NATIVE_PID=$!
 
 sleep 1
 
-# We use the serial GC because, on an m1, the optimized binary uses
-# the Serial GC
-SERVER_PORT=9000 cpulimit -l "$LIMIT" java -jar -XX:+UseSerialGC artifacts/books-app.jar
-#SERVER_PORT=9000 cpulimit -l "$LIMIT" java -jar artifacts/books-app.jar
+SERVER_PORT=9000 cpulimit -l "$LIMIT" java -jar artifacts/books-app.jar
 JAVA_PID=$!
 
 trap 'pkill -P $$; exit' SIGINT SIGTERM EXIT
