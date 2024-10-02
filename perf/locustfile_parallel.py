@@ -25,6 +25,11 @@ class AuthorizationCodeUser(FastHttpUser):
         with self.client.get("/admin", name=self.name) as response:
             pass
 
+class NativeOptimized(AuthorizationCodeUser):
+
+    host = "http://localhost:9002"
+    name = "native-pgo"
+
 class Native(AuthorizationCodeUser):
 
     host = "http://localhost:9001"

@@ -21,3 +21,6 @@ cp books/build/libs/books-0.0.1-SNAPSHOT.jar artifacts/books-app.jar
 
 ./gradlew clean :books:nativeCompile
 cp books/build/native/nativeCompile/books artifacts/books-app
+
+./gradlew -Pbp=optimized clean :books:nativeCompile
+cp books/build/native/nativeCompile/books artifacts/books-app

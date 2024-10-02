@@ -13,10 +13,20 @@ LIMIT=2
 # GraalVM 22
 sdk use java 23-graal
 
-SERVER_PORT=9000 cpulimit -l "$LIMIT" java -jar artifacts/books-app.jar &
-JAVA_PID=$!
-
-SERVER_PORT=9001 cpulimit -l "$LIMIT" ./artifacts/books-app
+SERVER_PORT=9001 cpulimit -l "$LIMIT" ./artifacts/books-app &
 NATIVE_PID=$!
+
+sleep 1
+
+SERVER_PORT=9002 cpulimit -l "$LIMIT" ./artifacts/books-optimized &
+NATIVE_PID=$!
+
+sleep 1
+
+# We use the serial GC because, on an m1, the optimized binary uses
+# the Serial GC
+SERVER_PORT=9000 cpulimit -l "$LIMIT" java -jar -XX:+UseSerialGC artifacts/books-app.jar
+#SERVER_PORT=9000 cpulimit -l "$LIMIT" java -jar artifacts/books-app.jar
+JAVA_PID=$!
 
 trap 'pkill -P $$; exit' SIGINT SIGTERM EXIT
