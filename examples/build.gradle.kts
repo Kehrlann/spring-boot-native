@@ -40,6 +40,9 @@ tasks.withType<Test> {
 }
 
 graalvmNative {
+    metadataRepository {
+        version = "0.3.10"
+    }
     binaries.all {
         buildArgs.add("-Ob")
 

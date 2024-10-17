@@ -43,6 +43,9 @@ tasks.withType<Test> {
 val bp: String? by project
 
 graalvmNative {
+    metadataRepository {
+        version = "0.3.10"
+    }
     binaries.all {
         buildArgs.add("-H:+AddAllCharsets") // required for Apache POI which uses the CP-1252 charset
 
@@ -69,7 +72,7 @@ graalvmNative {
             println("> Build profile: default")
             imageName = "books"
         }
-    
+
     }
 
     binaries.named("test") {
@@ -152,5 +155,5 @@ if (System.getenv("DOCKER_JVM") != null) {
         // A single buildpack, for java+native, that supports arm64
         buildpacks.add("gcr.io/paketo-buildpacks/java-native-image:latest")
     }
-    
+
 }
