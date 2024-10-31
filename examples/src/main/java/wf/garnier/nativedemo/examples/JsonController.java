@@ -26,7 +26,13 @@ class JsonController {
 
 	@GetMapping("/json/read")
 	public String readJson(Model model) {
-		var response = restClient.get().uri("/hugo.json").retrieve().body(RemoteApiData.class);
+		//@formatter:off
+		var response = restClient
+				.get()
+				.uri("/hugo.json")
+				.retrieve()
+				.body(RemoteApiData.class);
+		//@formatter:on
 		model.addAttribute("method", "restClient.get()");
 		model.addAttribute("data", response.toString());
 		return "json";
